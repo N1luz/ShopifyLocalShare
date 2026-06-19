@@ -864,65 +864,65 @@ function App() {
             {/* Placeholder images grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
               
-              {/* Placeholder 1 */}
-              <div style={{ 
-                border: '2px dashed var(--border-color)', 
+              {/* Card 1: Dezentrale Präsenz (Real Image) */}
+              <div className="panel" style={{ 
+                border: '1px solid var(--border-color)', 
                 borderRadius: '12px', 
-                padding: '2.25rem 1.5rem', 
-                background: 'rgba(149, 191, 71, 0.02)',
+                background: 'var(--card-bg)',
                 display: 'flex', 
                 flexDirection: 'column', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                gap: '0.75rem',
-                minHeight: '200px'
+                overflow: 'hidden',
+                minHeight: '220px',
+                padding: 0
               }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(149, 191, 71, 0.1)', color: 'var(--shopify-green-dark)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Store size={22} />
+                <div style={{ height: '130px', width: '100%', overflow: 'hidden', position: 'relative' }}>
+                  <img src="/folie2-bild1.jpg" alt="Dezentrale Präsenz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>1. Dezentrale Präsenz</strong>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
-                  [Bildplatzhalter: Produktausstellung im lokalen Store oder Kiosk]
-                </span>
+                <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>1. Dezentrale Präsenz</strong>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                    Produktausstellung und Verkauf direkt vor Ort im lokalen Partnershop.
+                  </span>
+                </div>
               </div>
 
-              {/* Placeholder 2 */}
-              <div style={{ 
-                border: '2px dashed rgba(8, 145, 178, 0.3)', 
+              {/* Card 2: Flexibler Kurier-Transfer (Real Image) */}
+              <div className="panel" style={{ 
+                border: '1px solid var(--border-color)', 
                 borderRadius: '12px', 
-                padding: '2.25rem 1.5rem', 
-                background: 'rgba(8, 145, 178, 0.02)',
+                background: 'var(--card-bg)',
                 display: 'flex', 
                 flexDirection: 'column', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                gap: '0.75rem',
-                minHeight: '200px'
+                overflow: 'hidden',
+                minHeight: '220px',
+                padding: 0
               }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(8, 145, 178, 0.1)', color: 'var(--neon-cyan)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Activity size={22} />
+                <div style={{ height: '130px', width: '100%', overflow: 'hidden', position: 'relative' }}>
+                  <img src="/folie2-bild2.jpg" alt="Flexibler Kurier-Transfer" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>2. Flexibler Kurier-Transfer</strong>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
-                  [Bildplatzhalter: Fahrradkurier liefert Ware zwischen Partner-Stores]
-                </span>
+                <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>2. Flexibler Kurier-Transfer</strong>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                    Schnelle und bedarfsorientierte Umlagerung per Lastenrad zwischen den Stores.
+                  </span>
+                </div>
               </div>
 
-              {/* Placeholder 3 */}
+              {/* Card 3: Blockchain Smart Split (Placeholder) */}
               <div style={{ 
                 border: '2px dashed rgba(124, 58, 237, 0.3)', 
                 borderRadius: '12px', 
-                padding: '2.25rem 1.5rem', 
+                padding: '1.5rem', 
                 background: 'rgba(124, 58, 237, 0.02)',
                 display: 'flex', 
                 flexDirection: 'column', 
                 alignItems: 'center', 
                 justifyContent: 'center',
                 gap: '0.75rem',
-                minHeight: '200px'
+                minHeight: '220px'
               }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(124, 58, 237, 0.1)', color: 'var(--neon-purple)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Coins size={22} />
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(124, 58, 237, 0.1)', color: 'var(--neon-purple)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Coins size={20} />
                 </div>
                 <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>3. Blockchain Smart Split</strong>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
