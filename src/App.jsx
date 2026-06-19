@@ -861,72 +861,57 @@ function App() {
               </p>
             </div>
             
-            {/* Placeholder images grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
+            {/* Alternating Showcase Rows */}
+            <div className="showcase-container">
               
-              {/* Card 1: Dezentrale Präsenz (Real Image) */}
-              <div className="panel" style={{ 
-                border: '1px solid var(--border-color)', 
-                borderRadius: '12px', 
-                background: 'var(--card-bg)',
-                display: 'flex', 
-                flexDirection: 'column', 
-                overflow: 'hidden',
-                minHeight: '220px',
-                padding: 0
-              }}>
-                <div style={{ height: '130px', width: '100%', overflow: 'hidden', position: 'relative' }}>
-                  <img src="/folie2-bild1.jpg" alt="Dezentrale Präsenz" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {/* Row 1: Dezentrale Präsenz */}
+              <div className="showcase-row">
+                <div className="showcase-image-wrapper">
+                  <img src="/folie2-bild1.jpg" alt="Dezentrale Präsenz" />
                 </div>
-                <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                  <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>1. Dezentrale Präsenz</strong>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                    Produktausstellung und Verkauf direkt vor Ort im lokalen Partnershop.
-                  </span>
+                <div className="showcase-content">
+                  <div className="showcase-tag" style={{ background: 'rgba(149, 191, 71, 0.1)', color: 'var(--shopify-green-dark)' }}>
+                    <Store size={14} />
+                    <span>Präsenz</span>
+                  </div>
+                  <h3 className="showcase-title">1. Dezentrale Präsenz</h3>
+                  <p className="showcase-description">
+                    Produktausstellung und Verkauf direkt vor Ort im lokalen Partnershop. Kunden können D2C-Produkte physisch erleben und direkt über das Shopify POS-Terminal erwerben. Dies ermöglicht Marken einen kosteneffizienten physischen Auftritt ohne eigenes Ladenlokal.
+                  </p>
                 </div>
               </div>
 
-              {/* Card 2: Flexibler Kurier-Transfer (Real Image) */}
-              <div className="panel" style={{ 
-                border: '1px solid var(--border-color)', 
-                borderRadius: '12px', 
-                background: 'var(--card-bg)',
-                display: 'flex', 
-                flexDirection: 'column', 
-                overflow: 'hidden',
-                minHeight: '220px',
-                padding: 0
-              }}>
-                <div style={{ height: '130px', width: '100%', overflow: 'hidden', position: 'relative' }}>
-                  <img src="/folie2-bild2.jpg" alt="Flexibler Kurier-Transfer" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {/* Row 2: Flexibler Kurier-Transfer */}
+              <div className="showcase-row">
+                <div className="showcase-image-wrapper">
+                  <img src="/folie2-bild2.jpg" alt="Flexibler Kurier-Transfer" />
                 </div>
-                <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                  <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>2. Flexibler Kurier-Transfer</strong>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                    Schnelle und bedarfsorientierte Umlagerung per Lastenrad zwischen den Stores.
-                  </span>
+                <div className="showcase-content">
+                  <div className="showcase-tag" style={{ background: 'rgba(8, 145, 178, 0.1)', color: 'var(--neon-cyan)' }}>
+                    <Activity size={14} />
+                    <span>Logistik</span>
+                  </div>
+                  <h3 className="showcase-title">2. Flexibler Kurier-Transfer</h3>
+                  <p className="showcase-description">
+                    Schnelle und bedarfsorientierte Umlagerung per Lastenrad zwischen den beteiligten Stores. Sobald Bestände an einem Ort knapp werden, stößt das System automatisch Umlagerungen an, die von lokalen Kurieren CO2-neutral ausgeführt werden.
+                  </p>
                 </div>
               </div>
 
-              {/* Card 3: Blockchain Smart Split (Real Image) */}
-              <div className="panel" style={{ 
-                border: '1px solid var(--border-color)', 
-                borderRadius: '12px', 
-                background: 'var(--card-bg)',
-                display: 'flex', 
-                flexDirection: 'column', 
-                overflow: 'hidden',
-                minHeight: '220px',
-                padding: 0
-              }}>
-                <div style={{ height: '130px', width: '100%', overflow: 'hidden', position: 'relative' }}>
-                  <img src="/folie2-bild3.png" alt="Blockchain Smart Split" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {/* Row 3: Blockchain Smart Split */}
+              <div className="showcase-row">
+                <div className="showcase-image-wrapper">
+                  <img src="/folie2-bild3.png" alt="Blockchain Smart Split" />
                 </div>
-                <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                  <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>3. Blockchain Smart Split</strong>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                    Automatisierte Transaktionen und Payout-Splits via Smart Contracts.
-                  </span>
+                <div className="showcase-content">
+                  <div className="showcase-tag" style={{ background: 'rgba(124, 58, 237, 0.1)', color: 'var(--neon-purple)' }}>
+                    <Coins size={14} />
+                    <span>Finanzen</span>
+                  </div>
+                  <h3 className="showcase-title">3. Blockchain Smart Split</h3>
+                  <p className="showcase-description">
+                    Automatisierte Transaktionen und sofortige Payout-Splits via Smart Contracts. Bei jedem Verkauf teilt das System die Einnahmen in Echtzeit transparent zwischen dem Markenhersteller (D2C), dem ausstellenden Händler und dem Kurier auf.
+                  </p>
                 </div>
               </div>
 
