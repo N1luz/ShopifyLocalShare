@@ -358,6 +358,12 @@ function App() {
     }
   };
 
+  // Reset cache/state on reload
+  useEffect(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  }, []);
+
   // Initialize Map
   useEffect(() => {
     if (currentSlide === 1 && !mapRef.current && mapContainerRef.current) {
@@ -708,13 +714,6 @@ function App() {
             <Navigation size={14} style={{ color: currentSlide === 1 ? 'var(--shopify-green-dark)' : '#64748b' }} />
             <span>Folie 2: Live-Netzwerk</span>
           </button>
-        </div>
-
-        <div className="status-pills" style={{ display: 'flex', gap: '0.5rem' }}>
-          <div className="status-pill" style={{ background: '#fff', fontSize: '0.75rem', padding: '0.3rem 0.6rem' }}>
-            <span className="status-indicator green"></span>
-            <span>Shopify APIs: SYNCED</span>
-          </div>
         </div>
       </header>
 
