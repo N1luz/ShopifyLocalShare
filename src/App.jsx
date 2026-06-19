@@ -908,26 +908,26 @@ function App() {
                 </div>
               </div>
 
-              {/* Card 3: Blockchain Smart Split (Placeholder) */}
-              <div style={{ 
-                border: '2px dashed rgba(124, 58, 237, 0.3)', 
+              {/* Card 3: Blockchain Smart Split (Real Image) */}
+              <div className="panel" style={{ 
+                border: '1px solid var(--border-color)', 
                 borderRadius: '12px', 
-                padding: '1.5rem', 
-                background: 'rgba(124, 58, 237, 0.02)',
+                background: 'var(--card-bg)',
                 display: 'flex', 
                 flexDirection: 'column', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                gap: '0.75rem',
-                minHeight: '220px'
+                overflow: 'hidden',
+                minHeight: '220px',
+                padding: 0
               }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(124, 58, 237, 0.1)', color: 'var(--neon-purple)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Coins size={20} />
+                <div style={{ height: '130px', width: '100%', overflow: 'hidden', position: 'relative' }}>
+                  <img src="/folie2-bild3.png" alt="Blockchain Smart Split" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>3. Blockchain Smart Split</strong>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
-                  [Bildplatzhalter: Automatisierte Transaktionen und Payout-Splits]
-                </span>
+                <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>3. Blockchain Smart Split</strong>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                    Automatisierte Transaktionen und Payout-Splits via Smart Contracts.
+                  </span>
+                </div>
               </div>
 
             </div>
