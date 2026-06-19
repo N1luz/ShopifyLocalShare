@@ -1006,8 +1006,8 @@ function App() {
                   </div>
                 </div>
 
-                {/* Actual Dashboard Content Scroll Area */}
-                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflowY: 'auto', flexGrow: 1 }}>
+                {/* Actual Dashboard Content Area */}
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   
                   {/* Header title in Shopify Admin Style */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
