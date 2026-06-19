@@ -653,507 +653,635 @@ function App() {
   };
 
   // --- FOLIE 1: KASSEN-FOKUS INTRO ---
-  if (currentSlide === 0) {
-    return (
-      <div className="dashboard-container fade-in">
-        {/* Header */}
-        <header className="dashboard-header">
-          <div className="logo-section">
-            <img src="/logo.png" alt="Shopify Logo" style={{ height: '36px', width: 'auto', marginRight: '0.25rem' }} />
-            <span className="logo-text" style={{ background: 'none', WebkitTextFillColor: 'initial', color: 'var(--text-primary)' }}>Shopify LocalShare</span>
-            <span className="logo-badge">Präsentationsmodus</span>
-          </div>
-          <div className="status-pills">
-            <span className="status-pill">Folie 1 von 2: Die Kasse vor Ort</span>
-          </div>
-        </header>
-
-        {/* Intro View Layout */}
-        <div className="panel" style={{ padding: '2.5rem', flexGrow: 1, justifyContent: 'center' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3rem', alignItems: 'center' }}>
-            
-            {/* Left Column: Image focused on the iPad Cash Register */}
-            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '16px', border: '3px solid var(--shopify-green)', boxShadow: '0 6px 20px rgba(149, 191, 71, 0.15)' }}>
-              <img 
-                src="/boutique-pos.jpg" 
-                alt="Shopify POS Kasse in Boutique" 
-                style={{
-                  width: '100%',
-                  height: '520px',
-                  objectFit: 'cover',
-                  objectPosition: '55% 72%', // Shift slightly to focus on ipad/receipt printer area
-                  display: 'block'
-                }}
-              />
-            </div>
-
-            {/* Right Column: Short Explanation */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', textAlign: 'left' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <span className="logo-badge" style={{ alignSelf: 'flex-start' }}>1. Die Schnittstelle vor Ort</span>
-                <h1 style={{ fontSize: '2.2rem', fontWeight: '800', lineHeight: '1.2', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
-                  Die physische Kasse
-                </h1>
-                <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontStyle: 'italic' }}>
-                  Ausgangspunkt für das vernetzte Shopify-Ökosystem.
-                </p>
-              </div>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                <p>
-                  Das System beginnt direkt an der Kasse (POS) eines lokalen Ladengeschäfts. Anstatt isoliert zu arbeiten, ist diese Kasse <strong>live mit dem Shopify-System vernetzt</strong>.
-                </p>
-                
-                <p><strong>Warum dieser Kassen-Fokus wichtig ist:</strong></p>
-                
-                <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  <li>
-                    <strong>Echtzeit-Synchronisation</strong>: Ein Verkauf zieht die Ware sofort digital von Shopify ab. Online- und Offline-Bestände sind immer zu 100% synchron.
-                  </li>
-                  <li>
-                    <strong>Split-Payment via Blockchain</strong>: Der Smart Contract teilt den eingenommenen Betrag sofort auf. Der Online-Händler, der Kioskbesitzer und Shopify erhalten automatisch ihren Anteil.
-                  </li>
-                  <li>
-                    <strong>Umlagerungs-Träger</strong>: Sobald die Kasse kritisch niedrige Bestände meldet, leitet das System automatisch Umlagerungen aus anderen Kiosken per Kurier ein.
-                  </li>
-                </ul>
-              </div>
-
-              <button 
-                className="pos-sell-btn" 
-                style={{ width: '100%', marginTop: '1rem', padding: '1rem', fontSize: '1.05rem', color: '#000000' }}
-                onClick={() => setCurrentSlide(1)}
-              >
-                <span>Zum interaktiven Netzwerk wechseln (Karte öffnen)</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Video Demonstration (Visible when scrolling down) */}
-        <div className="panel" style={{ padding: '2rem', marginTop: '1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ maxWidth: '900px', width: '100%', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0, 0, 0, 0.08)', boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)' }}>
-            <video 
-              src="/Folie1.mp4" 
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              style={{ width: '100%', display: 'block', background: '#000' }}
-            />
-          </div>
-        </div>
-
-        {/* Stock Take Detail (Boutique Scan Image) */}
-        <div className="panel" style={{ padding: '2.5rem', marginTop: '1.5rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3rem', alignItems: 'center' }}>
-            {/* Left Column: Short Explanation of the scanner in the ecosystem */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', textAlign: 'left' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <span className="logo-badge" style={{ alignSelf: 'flex-start' }}>2. Live-Abstimmung & Bestandsprüfung</span>
-                <h2 style={{ fontSize: '1.8rem', fontWeight: '800', lineHeight: '1.2', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
-                  Echtzeit-Warenerfassung & Stock Take
-                </h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', fontStyle: 'italic' }}>
-                  Intelligente Erfassung für nahtloses O2O (Online-to-Offline) Fulfillment.
-                </p>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                <p>
-                  Die mobile Shopify POS-App während eines physischen Kassiervorgangs oder einer Bestandsprüfung ("Stock Take"). Jedes Mal, wenn ein Artikel gescannt wird:
-                </p>
-                <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  <li>
-                    <strong>Echtzeit-Synchronisierung:</strong> Der physische Verkauf zieht die Ware im Shopify-Backend ab, sodass keine doppelten Verkäufe (Online/Offline) entstehen.
-                  </li>
-                  <li>
-                    <strong>Automatisches Rebalancing:</strong> Fällt der Bestand unter einen Schwellenwert, meldet die KI den Bedarf und veranlasst eine Umlagerung.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Right Column: Scan Image */}
-            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '16px', border: '3px solid var(--shopify-green)', boxShadow: '0 6px 20px rgba(149, 191, 71, 0.15)' }}>
-              <img 
-                src="/boutique-scan.png" 
-                alt="Shopify Stock Take Scan" 
-                style={{
-                  width: '100%',
-                  height: '480px',
-                  objectFit: 'cover',
-                  display: 'block'
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-      </div>
-    );
-  }
-
-  // --- FOLIE 2: INTERAKTIVE KARTE & DASHBOARD ---
   return (
-    <div className="dashboard-container fade-in" style={{ maxWidth: '100%', padding: '0.5rem' }}>
+    <div className="dashboard-container fade-in" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1rem' }}>
       
-      {/* macOS Browser Mockup window */}
-      <div className="mac-mockup-window">
-        {/* macOS Titlebar */}
-        <div className="mac-titlebar">
-          <div className="mac-dots">
-            <div className="mac-dot close"></div>
-            <div className="mac-dot minimize"></div>
-            <div className="mac-dot maximize"></div>
-          </div>
-          <div className="mac-address-bar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>admin.shopify.com/store/lunas-boutique/shared-inventory</span>
-          </div>
-          <div></div>
+      {/* Persistent Header on both sides */}
+      <header className="dashboard-header" style={{ width: '100%', position: 'sticky', top: 0, zIndex: 1000, margin: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="logo-section">
+          <img src="/logo.png" alt="Shopify Logo" style={{ height: '36px', width: 'auto', marginRight: '0.25rem' }} />
+          <span className="logo-text" style={{ background: 'none', WebkitTextFillColor: 'initial', color: 'var(--text-primary)' }}>Shopify LocalShare</span>
+          <span className="logo-badge">Präsentationsmodus</span>
+        </div>
+        
+        {/* Navigation Switcher inside the Header */}
+        <div style={{ display: 'flex', background: '#f1f2f4', padding: '4px', borderRadius: '10px', border: '1px solid #e1e3e5' }}>
+          <button 
+            onClick={() => setCurrentSlide(0)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              border: 'none',
+              background: currentSlide === 0 ? '#ffffff' : 'transparent',
+              color: currentSlide === 0 ? '#1a1a1a' : '#64748b',
+              fontWeight: '600',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              boxShadow: currentSlide === 0 ? '0 2px 6px rgba(0,0,0,0.06)' : 'none',
+              transition: 'all 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+          >
+            <Store size={14} style={{ color: currentSlide === 0 ? 'var(--shopify-green-dark)' : '#64748b' }} />
+            <span>Folie 1: Kasse vor Ort</span>
+          </button>
+          <button 
+            onClick={() => setCurrentSlide(1)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              border: 'none',
+              background: currentSlide === 1 ? '#ffffff' : 'transparent',
+              color: currentSlide === 1 ? '#1a1a1a' : '#64748b',
+              fontWeight: '600',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              boxShadow: currentSlide === 1 ? '0 2px 6px rgba(0,0,0,0.06)' : 'none',
+              transition: 'all 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+          >
+            <Navigation size={14} style={{ color: currentSlide === 1 ? 'var(--shopify-green-dark)' : '#64748b' }} />
+            <span>Folie 2: Live-Netzwerk</span>
+          </button>
         </div>
 
-        {/* Shopify Admin Desktop Layout */}
-        <div className="shopify-admin-layout">
-          
-          {/* Shopify Left Sidebar */}
-          <aside className="shopify-sidebar">
-            <div className="shopify-sidebar-logo">
-              <img src="/logo.png" alt="Shopify Logo" style={{ height: '30px', width: 'auto' }} />
-              <span style={{ fontWeight: '700', fontSize: '1.05rem', color: '#1a1a1a' }}>Shopify Admin</span>
-            </div>
-            <nav className="shopify-sidebar-nav">
-              <div className="shopify-nav-item">
-                <Store size={16} />
-                <span>Home</span>
-              </div>
-              <div className="shopify-nav-item">
-                <ShoppingCart size={16} />
-                <span>Bestellungen</span>
-              </div>
-              <div className="shopify-nav-item">
-                <QrCode size={16} />
-                <span>Produkte</span>
-              </div>
-              <div className="shopify-nav-item">
-                <Activity size={16} />
-                <span>Kunden</span>
-              </div>
-              <div className="shopify-nav-item">
-                <TrendingUp size={16} />
-                <span>Analysen</span>
-              </div>
-              <div className="shopify-nav-item active">
-                <Layers size={16} />
-                <span>Shared Inventory</span>
-              </div>
-            </nav>
-            <div style={{ padding: '0.75rem', background: '#f1f2f4', borderRadius: '8px', fontSize: '0.75rem', color: '#666', textAlign: 'left' }}>
-              <strong>Store:</strong> Karlsruhe Oststadt
-            </div>
-          </aside>
+        <div className="status-pills" style={{ display: 'flex', gap: '0.5rem' }}>
+          <div className="status-pill" style={{ background: '#fff', fontSize: '0.75rem', padding: '0.3rem 0.6rem' }}>
+            <span className="status-indicator green"></span>
+            <span>Shopify APIs: SYNCED</span>
+          </div>
+        </div>
+      </header>
 
-          {/* Main Shopify Dashboard Panel */}
-          <div className="shopify-main-content">
-            {/* Shopify Topbar */}
-            <div className="shopify-topbar">
-              <div className="shopify-search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <span>Suche nach Umlagerungen, Logs...</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                {/* Slide switch back to Slide 1 */}
-                <button 
-                  className="pos-btn" 
-                  style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', height: 'auto', background: '#fff', border: '1px solid #e1e3e5', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}
-                  onClick={() => setCurrentSlide(0)}
-                >
-                  ← Kasse (Folie 1)
-                </button>
-                <div className="shopify-profile">
-                  <span>Lunas Boutique</span>
-                  <div className="shopify-avatar">L</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Actual Dashboard Content Scroll Area */}
-            <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflowY: 'auto', flexGrow: 1 }}>
-              
-              {/* Header title in Shopify Admin Style */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ textAlign: 'left' }}>
-                  <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#1a1a1a', margin: 0 }}>Shared Inventory Management</h1>
-                  <p style={{ fontSize: '0.85rem', color: '#666', margin: '0.25rem 0 0 0' }}>KI-gestütztes Peer-to-Peer Warentransfernetzwerk und Blockchain-Ledger.</p>
-                </div>
-                <div className="status-pills">
-                  <div className="status-pill" style={{ background: '#fff' }}>
-                    <span className="status-indicator green"></span>
-                    <span>Shopify APIs: SYNCED</span>
-                  </div>
-                  <div className="status-pill" style={{ background: '#fff' }}>
-                    <span className="status-indicator purple"></span>
-                    <span>Ledger: SECURED</span>
-                  </div>
-                </div>
+      {/* Slide 1 Content */}
+      {currentSlide === 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', animation: 'fade-in 0.3s ease-out' }}>
+          {/* Intro View Layout */}
+          <div className="panel" style={{ padding: '2.5rem', justifyContent: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3rem', alignItems: 'center' }}>
+              {/* Left Column: Image focused on the iPad Cash Register */}
+              <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '16px', border: '3px solid var(--shopify-green)', boxShadow: '0 6px 20px rgba(149, 191, 71, 0.15)' }}>
+                <img 
+                  src="/boutique-pos.jpg" 
+                  alt="Shopify POS Kasse in Boutique" 
+                  style={{
+                    width: '100%',
+                    height: '520px',
+                    objectFit: 'cover',
+                    objectPosition: '55% 72%',
+                    display: 'block'
+                  }}
+                />
               </div>
 
-              {/* Main Dashboard Grid */}
-              <div className="dashboard-grid" style={{ minHeight: '520px' }}>
+              {/* Right Column: Short Explanation */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', textAlign: 'left' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <span className="logo-badge" style={{ alignSelf: 'flex-start' }}>1. Die Schnittstelle vor Ort</span>
+                  <h1 style={{ fontSize: '2.2rem', fontWeight: '800', lineHeight: '1.2', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
+                    Die physische Kasse
+                  </h1>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontStyle: 'italic' }}>
+                    Ausgangspunkt für das vernetzte Shopify-Ökosystem.
+                  </p>
+                </div>
                 
-                {/* Left Panel: Map & Logistics View */}
-                <section className="panel" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                  <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
-                    <h2 className="panel-title" style={{ fontSize: '0.95rem' }}>
-                      <Navigation size={16} />
-                      <span>Karlsruhe Oststadt - Live-Logistiknetzwerk</span>
-                    </h2>
-                    {courierStatus !== 'idle' && (
-                      <span className="logo-badge" style={{ borderColor: 'var(--neon-cyan)', color: 'var(--neon-cyan)', background: 'rgba(8, 145, 178, 0.05)' }}>
-                        {courierStatus === 'dispatching' ? 'Smart Contract wird verifiziert...' : `Kurier in Bewegung: ${Math.round(courierProgress * 100)}%`}
-                      </span>
-                    )}
-                  </div>
-                  <div className="panel-content" style={{ padding: 0 }}>
-                    <div className="map-wrapper" style={{ minHeight: '440px' }}>
-                      <div ref={mapContainerRef}></div>
-                    </div>
-                  </div>
-                </section>
-
-                {/* Right Sidebar: AI recommendation, POS simulator, Blockchain ledger */}
-                <aside className="sidebar-panel">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                  <p>
+                    Das System beginnt direkt an der Kasse (POS) eines lokalen Ladengeschäfts. Anstatt isoliert zu arbeiten, ist diese Kasse <strong>live mit dem Shopify-System vernetzt</strong>.
+                  </p>
                   
-                  {/* AI Recommendation Panel */}
-                  <div className="panel" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                    <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
-                      <h2 className="panel-title" style={{ color: 'var(--neon-cyan)', fontSize: '0.95rem' }}>
-                        <Cpu size={16} style={{ color: 'var(--neon-cyan)' }} />
-                        <span>KI-Bedarfsanalyse</span>
-                      </h2>
-                    </div>
-                    <div className="panel-content">
-                      {!transferTriggered && courierStatus === 'idle' ? (
-                        <div className="ai-recommendation-box" style={{ background: 'rgba(8, 145, 178, 0.02)' }}>
-                          <div className="ai-header" style={{ color: 'var(--neon-cyan)' }}>
-                            <AlertTriangle size={14} />
-                            <span>Engpass-Prognose (Event am Wochenende)</span>
-                          </div>
-                          <p className="ai-body" style={{ fontSize: '0.85rem' }}>
-                            <strong>Bedarfs-Peak erkannt:</strong> Gotec Club veranstaltet Samstag eine Techno-Nacht. Aktueller Getränkebestand deckt ca. 1.5 Stunden.
-                          </p>
-                          <p className="ai-body" style={{ fontSize: '0.85rem' }}>
-                            <strong>Lagerüberschuss gefunden:</strong> Lameyplatz Späti hat 240 Bier und 180 Cola im Lager (50 Cola Sicherheitsbestand verbleiben vor Ort).
-                          </p>
-                          <div className="ai-route-detail" style={{ fontSize: '0.75rem' }}>
-                            Umlagerung: 120 Bier, 130 Cola<br/>
-                            Distanz: ~850m | Transport: Fahrradkurier
-                          </div>
-                          <button 
-                            className="btn-cyan" 
-                            onClick={handleTriggerRebalance}
-                            disabled={courierStatus !== 'idle'}
-                            style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}
-                          >
-                            <RefreshCw size={14} className={courierStatus !== 'idle' ? 'animate-spin' : ''} />
-                            <span>Warentransfer freigeben & Smart Contract starten</span>
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="ai-recommendation-box" style={{ background: 'rgba(149, 191, 71, 0.03)', borderColor: 'rgba(149, 191, 71, 0.2)' }}>
-                          <div className="ai-header" style={{ color: 'var(--shopify-green-dark)' }}>
-                            <CheckCircle2 size={14} style={{ color: 'var(--shopify-green-dark)' }} />
-                            <span>Lagerbestände Optimiert</span>
-                          </div>
-                          <p className="ai-body" style={{ fontSize: '0.85rem' }}>
-                            Es liegen aktuell keine weiteren Optimierungsvorschläge vor. Der Bestand im Gotec Club ist durch den Smart Contract-Transfer abgesichert.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  <p><strong>Warum dieser Kassen-Fokus wichtig ist:</strong></p>
+                  
+                  <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <li>
+                      <strong>Echtzeit-Synchronisation</strong>: Ein Verkauf zieht die Ware sofort digital von Shopify ab. Online- und Offline-Bestände sind immer zu 100% synchron.
+                    </li>
+                    <li>
+                      <strong>Split-Payment via Blockchain</strong>: Der Smart Contract teilt den eingenommenen Betrag sofort auf. Der Online-Händler, der Kioskbesitzer und Shopify erhalten automatisch ihren Anteil.
+                    </li>
+                    <li>
+                      <strong>Umlagerungs-Träger</strong>: Sobald die Kasse kritisch niedrige Bestände meldet, leitet das System automatisch Umlagerungen aus anderen Kiosken per Kurier ein.
+                    </li>
+                  </ul>
+                </div>
 
-                  {/* POS Simulator */}
-                  <div className={`panel ${isScanning ? 'scan-flash' : ''}`} style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                    <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
-                      <h2 className="panel-title" style={{ fontSize: '0.95rem' }}>
-                        <ShoppingCart size={16} />
-                        <span>Kassen-Simulator (Synchronisiertes POS)</span>
-                      </h2>
-                    </div>
-                    <div className="panel-content">
-                      <div className="pos-grid">
-                        <div className="pos-store-selector">
-                          <button 
-                            className={`pos-btn ${posStore === 'gotec' ? 'active club' : ''}`}
-                            onClick={() => setPosStore('gotec')}
-                          >
-                            Gotec Club POS
-                          </button>
-                          <button 
-                            className={`pos-btn ${posStore === 'spaeti' ? 'active' : ''}`}
-                            onClick={() => setPosStore('spaeti')}
-                          >
-                            Lamey Späti POS
-                          </button>
-                        </div>
+                <button 
+                  className="pos-sell-btn" 
+                  style={{ width: '100%', marginTop: '1rem', padding: '1rem', fontSize: '1.05rem', color: '#000000' }}
+                  onClick={() => setCurrentSlide(1)}
+                >
+                  <span>Zum interaktiven Netzwerk wechseln (Karte öffnen)</span>
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          </div>
 
-                        <div className="pos-items">
-                          {/* Item: Bier */}
-                          <div className="pos-item-row">
-                            <div className="pos-item-info">
-                              <span className="pos-item-name">Bier (Local Brand)</span>
-                              <span className="pos-item-price">Preis: €3.50</span>
-                            </div>
-                            <div className="pos-item-actions">
-                              <button className="qty-btn" onClick={() => adjustQty('bier', -1)}>-</button>
-                              <span className="qty-num">{posBasket.bier}</span>
-                              <button className="qty-btn" onClick={() => adjustQty('bier', 1)}>+</button>
-                            </div>
-                          </div>
+          {/* Video Demonstration (Visible when scrolling down) */}
+          <div className="panel" style={{ padding: '2rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ maxWidth: '900px', width: '100%', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0, 0, 0, 0.08)', boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)' }}>
+              <video 
+                src="/Folie1.mp4" 
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                style={{ width: '100%', display: 'block', background: '#000' }}
+              />
+            </div>
+          </div>
 
-                          {/* Item: Cola */}
-                          <div className="pos-item-row">
-                            <div className="pos-item-info">
-                              <span className="pos-item-name">Fritz Cola</span>
-                              <span className="pos-item-price">Preis: €3.00</span>
-                            </div>
-                            <div className="pos-item-actions">
-                              <button className="qty-btn" onClick={() => adjustQty('cola', -1)}>-</button>
-                              <span className="qty-num">{posBasket.cola}</span>
-                              <button className="qty-btn" onClick={() => adjustQty('cola', 1)}>+</button>
-                            </div>
-                          </div>
+          {/* Stock Take Detail (Boutique Scan Image) */}
+          <div className="panel" style={{ padding: '2.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3rem', alignItems: 'center' }}>
+              {/* Left Column: Short Explanation of the scanner in the ecosystem */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', textAlign: 'left' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <span className="logo-badge" style={{ alignSelf: 'flex-start' }}>2. Live-Abstimmung & Bestandsprüfung</span>
+                  <h2 style={{ fontSize: '1.8rem', fontWeight: '800', lineHeight: '1.2', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
+                    Echtzeit-Warenerfassung & Stock Take
+                  </h2>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', fontStyle: 'italic' }}>
+                    Intelligente Erfassung für nahtloses O2O (Online-to-Offline) Fulfillment.
+                  </p>
+                </div>
 
-                          {/* Item: Mate */}
-                          <div className="pos-item-row">
-                            <div className="pos-item-info">
-                              <span className="pos-item-name">Club-Mate</span>
-                              <span className="pos-item-price">Preis: €3.50</span>
-                            </div>
-                            <div className="pos-item-actions">
-                              <button className="qty-btn" onClick={() => adjustQty('mate', -1)}>-</button>
-                              <span className="qty-num">{posBasket.mate}</span>
-                              <button className="qty-btn" onClick={() => adjustQty('mate', 1)}>+</button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <button 
-                          className="pos-sell-btn"
-                          onClick={handlePOSCheckout}
-                          disabled={posBasket.bier === 0 && posBasket.cola === 0 && posBasket.mate === 0}
-                        >
-                          <QrCode size={16} />
-                          <span>Scanner (€{((posBasket.bier * 3.50) + (posBasket.cola * 3.00) + (posBasket.mate * 3.50)).toFixed(2)})</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Blockchain Smart Contract Ledger */}
-                  <div 
-                    className="panel" 
-                    style={{ cursor: 'pointer', background: '#fff', border: '1px solid #e1e3e5' }}
-                    onClick={() => setShowExplorer(true)}
-                  >
-                    <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
-                      <h2 className="panel-title" style={{ color: 'var(--neon-purple)', fontSize: '0.95rem' }}>
-                        <Layers size={16} style={{ color: 'var(--neon-purple)' }} />
-                        <span>Blockchain Tracker</span>
-                      </h2>
-                      <span className="logo-badge" style={{ borderColor: 'var(--neon-purple)', color: 'var(--neon-purple)', background: 'var(--neon-purple-glow)', fontSize: '0.65rem' }}>
-                        Explorer öffnen
-                      </span>
-                    </div>
-                    <div className="panel-content">
-                      <div className="ledger-container">
-                        {ledger.map(entry => (
-                          <div 
-                            key={entry.id} 
-                            className={`ledger-row ${entry.type}`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedBlockId(entry.id);
-                              setShowExplorer(true);
-                            }}
-                          >
-                            <div className="ledger-meta">
-                              <span className="ledger-time">{entry.time}</span>
-                              <span className="ledger-hash">{entry.hash}</span>
-                            </div>
-                            <strong>{entry.title}</strong>
-                            <span className="ledger-text">{entry.text}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                </aside>
-
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                  <p>
+                    Die mobile Shopify POS-App während eines physischen Kassiervorgangs oder einer Bestandsprüfung ("Stock Take"). Jedes Mal, wenn ein Artikel gescannt wird:
+                  </p>
+                  <ul style={{ paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <li>
+                      <strong>Echtzeit-Synchronisierung:</strong> Der physische Verkauf zieht die Ware im Shopify-Backend ab, sodass keine doppelten Verkäufe (Online/Offline) entstehen.
+                    </li>
+                    <li>
+                      <strong>Automatisches Rebalancing:</strong> Fällt der Bestand unter einen Schwellenwert, meldet die KI den Bedarf und veranlasst eine Umlagerung.
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              {/* KPIs Bottom Grid */}
-              <footer className="kpi-row" style={{ marginTop: '0.5rem' }}>
-                
-                {/* KPI 1 */}
-                <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                  <div className="kpi-icon-wrapper">
-                    <Coins size={22} />
+              {/* Right Column: Scan Image */}
+              <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '16px', border: '3px solid var(--shopify-green)', boxShadow: '0 6px 20px rgba(149, 191, 71, 0.15)' }}>
+                <img 
+                  src="/boutique-scan.png" 
+                  alt="Shopify Stock Take Scan" 
+                  style={{
+                    width: '100%',
+                    height: '480px',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Slide 2 Content */}
+      {currentSlide === 1 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', animation: 'fade-in 0.3s ease-out' }}>
+          
+          {/* Explanation Header for Shared Inventory with Placeholder Images */}
+          <div className="panel" style={{ padding: '2.5rem', textAlign: 'left', background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+            <div style={{ maxWidth: '900px', marginBottom: '2rem' }}>
+              <span className="logo-badge" style={{ marginBottom: '0.5rem', display: 'inline-block' }}>Die Konzept-Idee</span>
+              <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.75rem', letterSpacing: '-0.5px' }}>
+                Shared Inventory & Collaborative Retail
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
+                Das Shared Inventory Konzept ermöglicht es physischen Stores und D2C-Onlinehändlern, ihre Warenbestände in Echtzeit lokal zu teilen. Statt dass jeder Händler ein vollbestücktes Einzellager finanzieren muss, werden Bestände dezentral und bedarfsorientiert per KI und Fahrradkurier umgelagert. Die Abrechnung erfolgt automatisiert über Smart Contracts.
+              </p>
+            </div>
+            
+            {/* Placeholder images grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
+              
+              {/* Placeholder 1 */}
+              <div style={{ 
+                border: '2px dashed var(--border-color)', 
+                borderRadius: '12px', 
+                padding: '2.25rem 1.5rem', 
+                background: 'rgba(149, 191, 71, 0.02)',
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '0.75rem',
+                minHeight: '200px'
+              }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(149, 191, 71, 0.1)', color: 'var(--shopify-green-dark)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Store size={22} />
+                </div>
+                <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>1. Dezentrale Präsenz</strong>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
+                  [Bildplatzhalter: Produktausstellung im lokalen Store oder Kiosk]
+                </span>
+              </div>
+
+              {/* Placeholder 2 */}
+              <div style={{ 
+                border: '2px dashed rgba(8, 145, 178, 0.3)', 
+                borderRadius: '12px', 
+                padding: '2.25rem 1.5rem', 
+                background: 'rgba(8, 145, 178, 0.02)',
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '0.75rem',
+                minHeight: '200px'
+              }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(8, 145, 178, 0.1)', color: 'var(--neon-cyan)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Activity size={22} />
+                </div>
+                <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>2. Flexibler Kurier-Transfer</strong>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
+                  [Bildplatzhalter: Fahrradkurier liefert Ware zwischen Partner-Stores]
+                </span>
+              </div>
+
+              {/* Placeholder 3 */}
+              <div style={{ 
+                border: '2px dashed rgba(124, 58, 237, 0.3)', 
+                borderRadius: '12px', 
+                padding: '2.25rem 1.5rem', 
+                background: 'rgba(124, 58, 237, 0.02)',
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '0.75rem',
+                minHeight: '200px'
+              }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(124, 58, 237, 0.1)', color: 'var(--neon-purple)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Coins size={22} />
+                </div>
+                <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>3. Blockchain Smart Split</strong>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.4' }}>
+                  [Bildplatzhalter: Automatisierte Transaktionen und Payout-Splits]
+                </span>
+              </div>
+
+            </div>
+          </div>
+
+          {/* macOS Browser Mockup window */}
+          <div className="mac-mockup-window">
+            {/* macOS Titlebar */}
+            <div className="mac-titlebar">
+              <div className="mac-dots">
+                <div className="mac-dot close"></div>
+                <div className="mac-dot minimize"></div>
+                <div className="mac-dot maximize"></div>
+              </div>
+              <div className="mac-address-bar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>admin.shopify.com/store/lunas-boutique/shared-inventory</span>
+              </div>
+              <div></div>
+            </div>
+
+            {/* Shopify Admin Desktop Layout */}
+            <div className="shopify-admin-layout">
+              
+              {/* Shopify Left Sidebar */}
+              <aside className="shopify-sidebar">
+                <div className="shopify-sidebar-logo">
+                  <img src="/logo.png" alt="Shopify Logo" style={{ height: '30px', width: 'auto' }} />
+                  <span style={{ fontWeight: '700', fontSize: '1.05rem', color: '#1a1a1a' }}>Shopify Admin</span>
+                </div>
+                <nav className="shopify-sidebar-nav">
+                  <div className="shopify-nav-item">
+                    <Store size={16} />
+                    <span>Home</span>
                   </div>
-                  <div className="kpi-info">
-                    <span className="kpi-label">Kapitalbindung Reduziert</span>
-                    <span className="kpi-value" style={{ color: 'var(--shopify-green-dark)' }}>-42.5 %</span>
+                  <div className="shopify-nav-item">
+                    <ShoppingCart size={16} />
+                    <span>Bestellungen</span>
+                  </div>
+                  <div className="shopify-nav-item">
+                    <QrCode size={16} />
+                    <span>Produkte</span>
+                  </div>
+                  <div className="shopify-nav-item">
+                    <Activity size={16} />
+                    <span>Kunden</span>
+                  </div>
+                  <div className="shopify-nav-item">
+                    <TrendingUp size={16} />
+                    <span>Analysen</span>
+                  </div>
+                  <div className="shopify-nav-item active">
+                    <Layers size={16} />
+                    <span>Shared Inventory</span>
+                  </div>
+                </nav>
+                <div style={{ padding: '0.75rem', background: '#f1f2f4', borderRadius: '8px', fontSize: '0.75rem', color: '#666', textAlign: 'left' }}>
+                  <strong>Store:</strong> Karlsruhe Oststadt
+                </div>
+              </aside>
+
+              {/* Main Shopify Dashboard Panel */}
+              <div className="shopify-main-content">
+                {/* Shopify Topbar */}
+                <div className="shopify-topbar">
+                  <div className="shopify-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>Suche nach Umlagerungen, Logs...</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div className="shopify-profile">
+                      <span>Lunas Boutique</span>
+                      <div className="shopify-avatar">L</div>
+                    </div>
                   </div>
                 </div>
 
-                {/* KPI 2 */}
-                <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                  <div className="kpi-icon-wrapper" style={{ borderColor: 'rgba(8, 145, 178, 0.25)', color: 'var(--neon-cyan)', background: 'rgba(8, 145, 178, 0.05)' }}>
-                    <Activity size={22} />
+                {/* Actual Dashboard Content Scroll Area */}
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflowY: 'auto', flexGrow: 1 }}>
+                  
+                  {/* Header title in Shopify Admin Style */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ textAlign: 'left' }}>
+                      <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#1a1a1a', margin: 0 }}>Shared Inventory Management</h1>
+                      <p style={{ fontSize: '0.85rem', color: '#666', margin: '0.25rem 0 0 0' }}>KI-gestütztes Peer-to-Peer Warentransfernetzwerk und Blockchain-Ledger.</p>
+                    </div>
+                    <div className="status-pills">
+                      <div className="status-pill" style={{ background: '#fff' }}>
+                        <span className="status-indicator green"></span>
+                        <span>Shopify APIs: SYNCED</span>
+                      </div>
+                      <div className="status-pill" style={{ background: '#fff' }}>
+                        <span className="status-indicator purple"></span>
+                        <span>Ledger: SECURED</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="kpi-info">
-                    <span className="kpi-label">CO₂-Einsparung (Kurier)</span>
-                    <span className="kpi-value" style={{ color: 'var(--neon-cyan)' }}>84.2 kg</span>
+
+                  {/* Main Dashboard Grid */}
+                  <div className="dashboard-grid" style={{ minHeight: '520px' }}>
+                    
+                    {/* Left Panel: Map & Logistics View */}
+                    <section className="panel" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                      <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
+                        <h2 className="panel-title" style={{ fontSize: '0.95rem' }}>
+                          <Navigation size={16} />
+                          <span>Karlsruhe Oststadt - Live-Logistiknetzwerk</span>
+                        </h2>
+                        {courierStatus !== 'idle' && (
+                          <span className="logo-badge" style={{ borderColor: 'var(--neon-cyan)', color: 'var(--neon-cyan)', background: 'rgba(8, 145, 178, 0.05)' }}>
+                            {courierStatus === 'dispatching' ? 'Smart Contract wird verifiziert...' : `Kurier in Bewegung: ${Math.round(courierProgress * 100)}%`}
+                          </span>
+                        )}
+                      </div>
+                      <div className="panel-content" style={{ padding: 0 }}>
+                        <div className="map-wrapper" style={{ minHeight: '440px' }}>
+                          <div ref={mapContainerRef}></div>
+                        </div>
+                      </div>
+                    </section>
+
+                    {/* Right Sidebar: AI recommendation, POS simulator, Blockchain ledger */}
+                    <aside className="sidebar-panel">
+                      
+                      {/* AI Recommendation Panel */}
+                      <div className="panel" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                        <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
+                          <h2 className="panel-title" style={{ color: 'var(--neon-cyan)', fontSize: '0.95rem' }}>
+                            <Cpu size={16} style={{ color: 'var(--neon-cyan)' }} />
+                            <span>KI-Bedarfsanalyse</span>
+                          </h2>
+                        </div>
+                        <div className="panel-content">
+                          {!transferTriggered && courierStatus === 'idle' ? (
+                            <div className="ai-recommendation-box" style={{ background: 'rgba(8, 145, 178, 0.02)' }}>
+                              <div className="ai-header" style={{ color: 'var(--neon-cyan)' }}>
+                                <AlertTriangle size={14} />
+                                <span>Engpass-Prognose (Event am Wochenende)</span>
+                              </div>
+                              <p className="ai-body" style={{ fontSize: '0.85rem' }}>
+                                <strong>Bedarfs-Peak erkannt:</strong> Gotec Club veranstaltet Samstag eine Techno-Nacht. Aktueller Getränkebestand deckt ca. 1.5 Stunden.
+                              </p>
+                              <p className="ai-body" style={{ fontSize: '0.85rem' }}>
+                                <strong>Lagerüberschuss gefunden:</strong> Lameyplatz Späti hat 240 Bier und 180 Cola im Lager (50 Cola Sicherheitsbestand verbleiben vor Ort).
+                              </p>
+                              <div className="ai-route-detail" style={{ fontSize: '0.75rem' }}>
+                                Umlagerung: 120 Bier, 130 Cola<br/>
+                                Distanz: ~850m | Transport: Fahrradkurier
+                              </div>
+                              <button 
+                                className="btn-cyan" 
+                                onClick={handleTriggerRebalance}
+                                disabled={courierStatus !== 'idle'}
+                                style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}
+                              >
+                                <RefreshCw size={14} className={courierStatus !== 'idle' ? 'animate-spin' : ''} />
+                                <span>Warentransfer freigeben & Smart Contract starten</span>
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="ai-recommendation-box" style={{ background: 'rgba(149, 191, 71, 0.03)', borderColor: 'rgba(149, 191, 71, 0.2)' }}>
+                              <div className="ai-header" style={{ color: 'var(--shopify-green-dark)' }}>
+                                <CheckCircle2 size={14} style={{ color: 'var(--shopify-green-dark)' }} />
+                                <span>Lagerbestände Optimiert</span>
+                              </div>
+                              <p className="ai-body" style={{ fontSize: '0.85rem' }}>
+                                Es liegen aktuell keine weiteren Optimierungsvorschläge vor. Der Bestand im Gotec Club ist durch den Smart Contract-Transfer abgesichert.
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* POS Simulator */}
+                      <div className={`panel ${isScanning ? 'scan-flash' : ''}`} style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                        <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
+                          <h2 className="panel-title" style={{ fontSize: '0.95rem' }}>
+                            <ShoppingCart size={16} />
+                            <span>Kassen-Simulator (Synchronisiertes POS)</span>
+                          </h2>
+                        </div>
+                        <div className="panel-content">
+                          <div className="pos-grid">
+                            <div className="pos-store-selector">
+                              <button 
+                                className={`pos-btn ${posStore === 'gotec' ? 'active club' : ''}`}
+                                onClick={() => setPosStore('gotec')}
+                              >
+                                Gotec Club POS
+                              </button>
+                              <button 
+                                className={`pos-btn ${posStore === 'spaeti' ? 'active' : ''}`}
+                                onClick={() => setPosStore('spaeti')}
+                              >
+                                Lamey Späti POS
+                              </button>
+                            </div>
+
+                            <div className="pos-items">
+                              {/* Item: Bier */}
+                              <div className="pos-item-row">
+                                <div className="pos-item-info">
+                                  <span className="pos-item-name">Bier (Local Brand)</span>
+                                  <span className="pos-item-price">Preis: €3.50</span>
+                                </div>
+                                <div className="pos-item-actions">
+                                  <button className="qty-btn" onClick={() => adjustQty('bier', -1)}>-</button>
+                                  <span className="qty-num">{posBasket.bier}</span>
+                                  <button className="qty-btn" onClick={() => adjustQty('bier', 1)}>+</button>
+                                </div>
+                              </div>
+
+                              {/* Item: Cola */}
+                              <div className="pos-item-row">
+                                <div className="pos-item-info">
+                                  <span className="pos-item-name">Fritz Cola</span>
+                                  <span className="pos-item-price">Preis: €3.00</span>
+                                </div>
+                                <div className="pos-item-actions">
+                                  <button className="qty-btn" onClick={() => adjustQty('cola', -1)}>-</button>
+                                  <span className="qty-num">{posBasket.cola}</span>
+                                  <button className="qty-btn" onClick={() => adjustQty('cola', 1)}>+</button>
+                                </div>
+                              </div>
+
+                              {/* Item: Mate */}
+                              <div className="pos-item-row">
+                                <div className="pos-item-info">
+                                  <span className="pos-item-name">Club-Mate</span>
+                                  <span className="pos-item-price">Preis: €3.50</span>
+                                </div>
+                                <div className="pos-item-actions">
+                                  <button className="qty-btn" onClick={() => adjustQty('mate', -1)}>-</button>
+                                  <span className="qty-num">{posBasket.mate}</span>
+                                  <button className="qty-btn" onClick={() => adjustQty('mate', 1)}>+</button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <button 
+                              className="pos-sell-btn"
+                              onClick={handlePOSCheckout}
+                              disabled={posBasket.bier === 0 && posBasket.cola === 0 && posBasket.mate === 0}
+                            >
+                              <QrCode size={16} />
+                              <span>Scanner (€{((posBasket.bier * 3.50) + (posBasket.cola * 3.00) + (posBasket.mate * 3.50)).toFixed(2)})</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Blockchain Smart Contract Ledger */}
+                      <div 
+                        className="panel" 
+                        style={{ cursor: 'pointer', background: '#fff', border: '1px solid #e1e3e5' }}
+                        onClick={() => setShowExplorer(true)}
+                      >
+                        <div className="panel-header" style={{ borderBottom: '1px solid #f1f2f4' }}>
+                          <h2 className="panel-title" style={{ color: 'var(--neon-purple)', fontSize: '0.95rem' }}>
+                            <Layers size={16} style={{ color: 'var(--neon-purple)' }} />
+                            <span>Blockchain Tracker</span>
+                          </h2>
+                          <span className="logo-badge" style={{ borderColor: 'var(--neon-purple)', color: 'var(--neon-purple)', background: 'var(--neon-purple-glow)', fontSize: '0.65rem' }}>
+                            Explorer öffnen
+                          </span>
+                        </div>
+                        <div className="panel-content">
+                          <div className="ledger-container">
+                            {ledger.map(entry => (
+                              <div 
+                                key={entry.id} 
+                                className={`ledger-row ${entry.type}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedBlockId(entry.id);
+                                  setShowExplorer(true);
+                                }}
+                              >
+                                <div className="ledger-meta">
+                                  <span className="ledger-time">{entry.time}</span>
+                                  <span className="ledger-hash">{entry.hash}</span>
+                                </div>
+                                <strong>{entry.title}</strong>
+                                <span className="ledger-text">{entry.text}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                    </aside>
+
                   </div>
+
+                  {/* KPIs Bottom Grid */}
+                  <footer className="kpi-row" style={{ marginTop: '0.5rem' }}>
+                    
+                    {/* KPI 1 */}
+                    <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                      <div className="kpi-icon-wrapper">
+                        <Coins size={22} />
+                      </div>
+                      <div className="kpi-info">
+                        <span className="kpi-label">Kapitalbindung Reduziert</span>
+                        <span className="kpi-value" style={{ color: 'var(--shopify-green-dark)' }}>-42.5 %</span>
+                      </div>
+                    </div>
+
+                    {/* KPI 2 */}
+                    <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                      <div className="kpi-icon-wrapper" style={{ borderColor: 'rgba(8, 145, 178, 0.25)', color: 'var(--neon-cyan)', background: 'rgba(8, 145, 178, 0.05)' }}>
+                        <Activity size={22} />
+                      </div>
+                      <div className="kpi-info">
+                        <span className="kpi-label">CO₂-Einsparung (Kurier)</span>
+                        <span className="kpi-value" style={{ color: 'var(--neon-cyan)' }}>84.2 kg</span>
+                      </div>
+                    </div>
+
+                    {/* KPI 3 */}
+                    <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                      <div className="kpi-icon-wrapper" style={{ borderColor: 'rgba(124, 58, 237, 0.25)', color: 'var(--neon-purple)', background: 'rgba(124, 58, 237, 0.05)' }}>
+                        <Shield size={22} />
+                      </div>
+                      <div className="kpi-info">
+                        <span className="kpi-label">Bestandsverlust</span>
+                        <span className="kpi-value" style={{ color: 'var(--neon-purple)' }}>0.00 %</span>
+                      </div>
+                    </div>
+
+                    {/* KPI 4 */}
+                    <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
+                      <div className="kpi-icon-wrapper" style={{ borderColor: 'rgba(234, 88, 12, 0.25)', color: 'var(--neon-orange)', background: 'rgba(234, 88, 12, 0.05)' }}>
+                        <TrendingUp size={22} />
+                      </div>
+                      <div className="kpi-info">
+                        <span className="kpi-label">Umsatzplus durch Umlagerung</span>
+                        <span className="kpi-value" style={{ color: 'var(--neon-orange)' }}>+18.4 %</span>
+                      </div>
+                    </div>
+
+                  </footer>
+
                 </div>
 
-                {/* KPI 3 */}
-                <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                  <div className="kpi-icon-wrapper" style={{ borderColor: 'rgba(124, 58, 237, 0.25)', color: 'var(--neon-purple)', background: 'rgba(124, 58, 237, 0.05)' }}>
-                    <Shield size={22} />
-                  </div>
-                  <div className="kpi-info">
-                    <span className="kpi-label">Bestandsverlust</span>
-                    <span className="kpi-value" style={{ color: 'var(--neon-purple)' }}>0.00 %</span>
-                  </div>
-                </div>
-
-                {/* KPI 4 */}
-                <div className="kpi-card" style={{ background: '#fff', border: '1px solid #e1e3e5' }}>
-                  <div className="kpi-icon-wrapper" style={{ borderColor: 'rgba(234, 88, 12, 0.25)', color: 'var(--neon-orange)', background: 'rgba(234, 88, 12, 0.05)' }}>
-                    <TrendingUp size={22} />
-                  </div>
-                  <div className="kpi-info">
-                    <span className="kpi-label">Umsatzplus durch Umlagerung</span>
-                    <span className="kpi-value" style={{ color: 'var(--neon-orange)' }}>+18.4 %</span>
-                  </div>
-                </div>
-
-              </footer>
+              </div>
 
             </div>
 
           </div>
 
         </div>
-
-      </div>
+      )}
 
       {/* Blockchain Explorer Modal Overlay */}
       {showExplorer && (
