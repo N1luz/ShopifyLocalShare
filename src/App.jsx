@@ -1249,19 +1249,7 @@ function App() {
 
                       {/* Middle Side: Scanner Feed (Video) */}
                       <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <div style={{ 
-                          position: 'relative', 
-                          borderRadius: '12px', 
-                          overflow: 'hidden', 
-                          border: '1px solid #e1e3e5', 
-                          background: '#000',
-                          aspectRatio: '16/9',
-                          width: '100%',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}>
+                        <div className="pos-video-container">
                           <video 
                             src="/Folie1.mp4" 
                             autoPlay 
