@@ -1878,12 +1878,10 @@ function App() {
 
             </div>
 
-          </div>
-
           {/* POS Receipt Modal Overlay */}
           {showReceiptModal && lastSplitDetail && (
             <div style={{
-              position: 'fixed',
+              position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
@@ -1949,22 +1947,24 @@ function App() {
             </div>
           )}
 
-      </div>
+          {/* Blockchain Explorer Modal Overlay */}
+          {showExplorer && (
+            <div className="blockchain-explorer-overlay" onClick={() => setShowExplorer(false)}>
+              <div onClick={(e) => e.stopPropagation()} style={{ width: '100%', maxWidth: '1100px' }}>
+                <BlockchainExplorer 
+                  ledger={ledger}
+                  selectedBlockId={selectedBlockId}
+                  setSelectedBlockId={setSelectedBlockId}
+                  getBlockPayload={getBlockPayload}
+                  onClose={() => setShowExplorer(false)}
+                />
+              </div>
+            </div>
+          )}
 
-      {/* Blockchain Explorer Modal Overlay */}
-      {showExplorer && (
-        <div className="blockchain-explorer-overlay" onClick={() => setShowExplorer(false)}>
-          <div onClick={(e) => e.stopPropagation()} style={{ width: '100%', maxWidth: '1100px' }}>
-            <BlockchainExplorer 
-              ledger={ledger}
-              selectedBlockId={selectedBlockId}
-              setSelectedBlockId={setSelectedBlockId}
-              getBlockPayload={getBlockPayload}
-              onClose={() => setShowExplorer(false)}
-            />
           </div>
-        </div>
-      )}
+
+      </div>
 
     </div>
   );
