@@ -1248,19 +1248,16 @@ function App() {
                       </div>
 
                       {/* Middle Side: Scanner Feed (Video) */}
-                      <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
-                        <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff3b30', display: 'inline-block', animation: 'pulse 1s infinite alternate' }}></span>
-                          Live Scanner-Feed
-                        </h3>
+                      <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div style={{ 
                           position: 'relative', 
                           borderRadius: '12px', 
                           overflow: 'hidden', 
-                          border: '2px solid #333', 
+                          border: '1px solid #e1e3e5', 
                           background: '#000',
                           aspectRatio: '16/9',
-                          boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                          width: '100%',
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center'
@@ -1273,20 +1270,6 @@ function App() {
                             playsInline
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
-                          {/* Scanning scanline animation overlay */}
-                          <div style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '2px',
-                            background: 'rgba(149, 191, 71, 0.8)',
-                            boxShadow: '0 0 10px rgba(149, 191, 71, 0.8)',
-                            animation: 'scan 3s linear infinite'
-                          }} />
-                        </div>
-                        <div style={{ fontSize: '0.75rem', color: '#666', lineHeight: '1.4' }}>
-                          <strong>Kamera-Modus:</strong> Vision- & RFID-Scanner aktiv. Artikel werden beim Auflegen auf den POS-Tisch vollautomatisch erfasst.
                         </div>
                       </div>
 
