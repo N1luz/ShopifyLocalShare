@@ -1365,3 +1365,15 @@ input[type="range"] {
 .fade-in {
   animation: fade-in 0.3s ease-out forwards;
 }
+
+/* Scanline and pulse animations for POS live camera feed */
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+@keyframes pulse {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}

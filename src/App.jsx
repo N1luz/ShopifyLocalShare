@@ -1161,7 +1161,7 @@ function App() {
 
                   {/* TAB 2: POS Kassensystem */}
                   {activeAdminTab === 'pos' && (
-                    <div className="pos-fullscreen-panel" style={{ background: '#fff', border: '1px solid #e1e3e5', borderRadius: '12px', padding: '1.5rem', display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '2rem' }}>
+                    <div className="pos-fullscreen-panel" style={{ background: '#fff', border: '1px solid #e1e3e5', borderRadius: '12px', padding: '1.5rem', display: 'grid', gridTemplateColumns: '1.4fr 1.1fr 1fr', gap: '1.5rem' }}>
                       {/* Left Side: Product Grid */}
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
@@ -1247,8 +1247,51 @@ function App() {
                         </div>
                       </div>
 
+                      {/* Middle Side: Scanner Feed (Video) */}
+                      <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
+                        <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff3b30', display: 'inline-block', animation: 'pulse 1s infinite alternate' }}></span>
+                          Live Scanner-Feed
+                        </h3>
+                        <div style={{ 
+                          position: 'relative', 
+                          borderRadius: '12px', 
+                          overflow: 'hidden', 
+                          border: '2px solid #333', 
+                          background: '#000',
+                          aspectRatio: '16/9',
+                          boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}>
+                          <video 
+                            src="/Folie1.mp4" 
+                            autoPlay 
+                            loop 
+                            muted 
+                            playsInline
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                          {/* Scanning scanline animation overlay */}
+                          <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '2px',
+                            background: 'rgba(149, 191, 71, 0.8)',
+                            boxShadow: '0 0 10px rgba(149, 191, 71, 0.8)',
+                            animation: 'scan 3s linear infinite'
+                          }} />
+                        </div>
+                        <div style={{ fontSize: '0.75rem', color: '#666', lineHeight: '1.4' }}>
+                          <strong>Kamera-Modus:</strong> Vision- & RFID-Scanner aktiv. Artikel werden beim Auflegen auf den POS-Tisch vollautomatisch erfasst.
+                        </div>
+                      </div>
+
                       {/* Right Side: Cart Summary */}
-                      <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'left' }}>
+                      <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'left' }}>
                         <div>
                           <h3 style={{ margin: '0 0 1.5rem 0', fontSize: '1.1rem', fontWeight: 600 }}>Warenkorb</h3>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', minHeight: '150px' }}>
