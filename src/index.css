@@ -1777,3 +1777,260 @@ input[type="range"] {
   overflow-y: auto;
   flex-shrink: 0;
 }
+
+/* --- MOBILE RESPONSIVE OPTIMIZATION (SMARTPHONE MOCKUP) --- */
+
+/* Hide hamburger button by default on desktop */
+.mobile-hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1a1a1a;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  /* Hide MacBook silver base entirely on mobile */
+  .macbook-base {
+    display: none !important;
+  }
+
+  /* Morph the wrapper to phone boundaries */
+  .macbook-wrapper {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 1.5rem auto !important;
+  }
+
+  /* Morph black bezel to a smartphone outline */
+  .macbook-lid {
+    width: 100% !important;
+    max-width: 360px !important;
+    background: #111112 !important; /* Premium dark iPhone bezel */
+    border-radius: 40px !important;
+    padding: 40px 10px 24px 10px !important; /* Top padding is for iPhone notch, bottom for home indicator */
+    border: 2px solid #2d2d30 !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Draw Dynamic Island / Camera notch */
+  .macbook-lid::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90px !important;
+    height: 18px !important;
+    background: #000000 !important;
+    border-radius: 9px !important;
+    border: none !important;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.15) !important;
+  }
+
+  /* Draw home indicator bar instead of logo strip */
+  .macbook-lid::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 110px !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 2px !important;
+    opacity: 1 !important;
+  }
+
+  /* Set fixed smartphone screen height inside frame */
+  .mac-mockup-window {
+    height: 580px !important;
+    border-radius: 28px !important;
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+  }
+
+  /* Address title bar modifications for mobile layout */
+  .mac-titlebar {
+    height: 38px !important;
+    padding: 0 10px !important;
+    grid-template-columns: 1fr !important;
+    justify-content: center !important;
+  }
+  .mac-dots {
+    display: none !important; /* Hide macOS window controls on phone */
+  }
+  .mac-address-bar {
+    width: 100% !important;
+    font-size: 10px !important;
+    padding: 4px 6px !important;
+  }
+
+  /* Hide desktop sidebar */
+  .shopify-sidebar {
+    display: none !important;
+  }
+
+  /* Display hamburger toggle on mobile */
+  .mobile-hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Adjust desktop topbar to mobile screen constraints */
+  .shopify-topbar {
+    height: 48px !important;
+    padding: 0 0.75rem !important;
+  }
+  .shopify-search {
+    display: none !important; /* Hide search input on mobile topbar for space */
+  }
+  .shopify-profile {
+    font-size: 0.8rem !important;
+  }
+  .shopify-avatar {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Main scroll container styling */
+  .shopify-main-content {
+    height: 100% !important;
+    overflow-y: auto !important;
+  }
+
+  /* Mobile Content margins */
+  .shopify-main-content > div {
+    padding: 0.75rem !important;
+    gap: 1rem !important;
+  }
+
+  /* Align title headers */
+  .shopify-main-content h1 {
+    font-size: 1.15rem !important;
+  }
+  .shopify-main-content p {
+    font-size: 0.75rem !important;
+  }
+
+  /* --- Tab Content Stack Overrides --- */
+
+  /* Map Container */
+  .map-wrapper {
+    min-height: 280px !important;
+  }
+
+  /* POS Panels stacking */
+  .pos-fullscreen-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+  }
+  .pos-fullscreen-panel > div {
+    border-left: none !important;
+    border-top: 1px solid #e1e3e5 !important;
+    padding-left: 0 !important;
+    padding-top: 1rem !important;
+  }
+  .pos-fullscreen-panel > div:first-child {
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  /* Smart Store Panel stacking */
+  .smart-store-panel > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .smart-store-panel > div > div {
+    border-right: none !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid #e1e3e5 !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .smart-store-panel > div > div:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Procurement Panel stacking */
+  .procurement-panel > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .procurement-panel > div > div {
+    border-right: none !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid #e1e3e5 !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .procurement-panel > div > div:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Händlernetzwerk Profile cards stacking */
+  .network-panel > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  /* --- Navigation Drawer Menu Overlay on Mobile --- */
+  .mobile-drawer-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .mobile-drawer-content {
+    width: 240px;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+    animation: drawerSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .mobile-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f2f4;
+    padding-bottom: 0.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 1rem;
+  }
+
+  .mobile-drawer-header button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #999;
+    cursor: pointer;
+  }
+
+  @keyframes drawerSlide {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+}

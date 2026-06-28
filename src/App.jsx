@@ -305,6 +305,7 @@ function App() {
   const [activeAdminTab, setActiveAdminTab] = useState('overview');
   const [showExplorer, setShowExplorer] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedBlockId, setSelectedBlockId] = useState(null);
 
   const [scrollY, setScrollY] = useState(0);
@@ -1173,6 +1174,9 @@ function App() {
               <div className="shopify-main-content">
                 {/* Shopify Topbar */}
                 <div className="shopify-topbar">
+                  <button className="mobile-hamburger-btn" onClick={() => setMobileMenuOpen(true)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                  </button>
                   <div className="shopify-search">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     <span>Suche nach Umlagerungen, Logs...</span>
@@ -2172,6 +2176,76 @@ function App() {
             </div>
           )}
 
+          {/* Mobile Navigation Drawer Overlay */}
+          {mobileMenuOpen && (
+            <div className="mobile-drawer-overlay" onClick={() => setMobileMenuOpen(false)}>
+              <div className="mobile-drawer-content" onClick={(e) => e.stopPropagation()}>
+                <div className="mobile-drawer-header">
+                  <span>Menü</span>
+                  <button onClick={() => setMobileMenuOpen(false)}>×</button>
+                </div>
+                <nav className="shopify-sidebar-nav">
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'overview' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('overview'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <Navigation size={16} />
+                    <span>Zentrale Übersicht</span>
+                  </button>
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'pos' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('pos'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <Store size={16} />
+                    <span>POS Kassensystem</span>
+                  </button>
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'inventory' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('inventory'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <Package size={16} />
+                    <span>Warenwirtschaft</span>
+                  </button>
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'analytics' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('analytics'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <TrendingUp size={16} />
+                    <span>Analytics Dashboard</span>
+                  </button>
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'smartstore' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('smartstore'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <Cpu size={16} />
+                    <span>Smart Store (ESL)</span>
+                  </button>
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'procurement' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('procurement'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <Truck size={16} />
+                    <span>Smart Procurement</span>
+                  </button>
+                  <button 
+                    className={`shopify-nav-item ${activeAdminTab === 'network' ? 'active' : ''}`}
+                    onClick={() => { setActiveAdminTab('network'); setMobileMenuOpen(false); }}
+                    style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+                  >
+                    <Network size={16} />
+                    <span>Händlernetzwerk</span>
+                  </button>
+                </nav>
+              </div>
+            </div>
+          )}
+          
           </div> {/* Closes mac-mockup-window */}
         </div> {/* Closes macbook-lid */}
         
