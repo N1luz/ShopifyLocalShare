@@ -345,26 +345,21 @@ function App() {
       }
 
       if (macbookContainerRef.current) {
-        const rect = macbookContainerRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        
         if (hasOpened) {
           setLidRotation(0);
         } else {
-          // Start opening when top of MacBook container is at 95% of viewport
-          const startOffset = viewportHeight * 0.95;
-          const endOffset = viewportHeight * 0.15;
+          const startScroll = 900;
+          const endScroll = 1450;
           
-          const totalDistance = startOffset - endOffset;
-          const currentDistance = startOffset - rect.top;
-          
-          const progress = Math.max(0, Math.min(1, currentDistance / totalDistance));
-          // Rotate from -95deg to 0deg (cap at 0 for ease of interaction)
-          const rotation = -95 + progress * 95;
-          setLidRotation(rotation);
-          
-          if (rotation >= -0.5) {
+          if (currentScrollY > endScroll) {
+            setLidRotation(0);
             setHasOpened(true);
+          } else if (currentScrollY < startScroll) {
+            setLidRotation(-95);
+          } else {
+            const progress = (currentScrollY - startScroll) / (endScroll - startScroll);
+            const rotation = -95 + progress * 95;
+            setLidRotation(rotation);
           }
         }
       }
