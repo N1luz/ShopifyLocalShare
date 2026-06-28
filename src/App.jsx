@@ -308,8 +308,10 @@ function App() {
 
   const [scrollY, setScrollY] = useState(0);
   const showcaseContainerRef = useRef(null);
+  const macbookContainerRef = useRef(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [nodesActive, setNodesActive] = useState({ n1: false, n2: false, n3: false });
+  const [lidRotation, setLidRotation] = useState(-95);
 
   // Force scroll to top on mount so the landing page experience is consistent
   useEffect(() => {
@@ -338,6 +340,23 @@ function App() {
           n2: rect.top < viewportHeight * 0.45,
           n3: rect.top < viewportHeight * 0.15
         });
+      }
+
+      if (macbookContainerRef.current) {
+        const rect = macbookContainerRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Start opening when top of MacBook container is at 95% of viewport
+        const startOffset = viewportHeight * 0.95;
+        const endOffset = viewportHeight * 0.15;
+        
+        const totalDistance = startOffset - endOffset;
+        const currentDistance = startOffset - rect.top;
+        
+        const progress = Math.max(0, Math.min(1, currentDistance / totalDistance));
+        // Rotate from -95deg to 0deg (cap at 0 for ease of interaction)
+        const rotation = -95 + progress * 95;
+        setLidRotation(rotation);
       }
     };
     
@@ -1068,8 +1087,15 @@ function App() {
           </div>
         </div>
 
-          {/* macOS Browser Mockup window */}
-          <div className="mac-mockup-window reveal-element reveal-up-tilt">
+          {/* MacBook Mockup 3D Container wrapper */}
+          <div className="macbook-wrapper" ref={macbookContainerRef}>
+            
+            {/* The Lid (Screen) */}
+            <div className="macbook-lid" style={{
+              transform: `rotateX(${lidRotation}deg)`,
+              pointerEvents: lidRotation >= -2 ? 'auto' : 'none'
+            }}>
+              <div className="mac-mockup-window" style={{ margin: 0, boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
             {/* macOS Titlebar */}
             <div className="mac-titlebar">
               <div className="mac-dots">
@@ -2138,7 +2164,15 @@ function App() {
             </div>
           )}
 
-          </div>
+          </div> {/* Closes mac-mockup-window */}
+        </div> {/* Closes macbook-lid */}
+        
+        {/* The Base (Keyboard) */}
+        <div className="macbook-base">
+          <div className="keyboard-mock"></div>
+          <div className="trackpad-mock"></div>
+        </div>
+      </div> {/* Closes macbook-wrapper */}
 
       </div>
 
