@@ -348,11 +348,7 @@ function App() {
         const rect = macbookContainerRef.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        // Reset hasOpened if scrolled back up to the hero/intro area
-        if (currentScrollY < 300) {
-          setHasOpened(false);
-          setLidRotation(-95);
-        } else if (hasOpened) {
+        if (hasOpened) {
           setLidRotation(0);
         } else {
           // Start opening when top of MacBook container is at 95% of viewport
