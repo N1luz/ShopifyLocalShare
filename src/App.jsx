@@ -830,7 +830,7 @@ function App() {
   };
 
   return (
-    <div className="app-wrapper" style={{ background: '#f8fafc', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
+    <div className="app-wrapper" style={{ background: '#f8fafc', minHeight: '100vh', width: '100%' }}>
       
       {/* Hero Intro Section */}
       <div className="hero-section" style={{
