@@ -1794,6 +1794,49 @@ input[type="range"] {
 }
 
 @media (max-width: 768px) {
+  /* Global page containers padding optimization for small viewports */
+  .dashboard-container {
+    padding: 0.5rem !important;
+    gap: 1rem !important;
+  }
+  
+  .dashboard-header {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .dashboard-header .logo-section {
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+    align-items: center !important;
+  }
+
+  /* Assumptions Box optimization */
+  .assumptions-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .panel {
+    padding: 1.25rem !important;
+  }
+
+  /* Concept Showcases Layout Stack */
+  .showcase-layout-row {
+    gap: 0 !important;
+  }
+  .showcase-timeline-wrapper {
+    display: none !important; /* Hide timeline line and nodes on mobile */
+  }
+  .showcase-row {
+    padding-left: 0 !important;
+    gap: 1rem !important;
+  }
+  .showcase-image-wrapper {
+    height: 180px !important; /* Slightly smaller showcase images on mobile */
+  }
+
   /* Hide MacBook silver base entirely on mobile */
   .macbook-base {
     display: none !important;

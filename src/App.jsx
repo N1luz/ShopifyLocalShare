@@ -950,7 +950,7 @@ function App() {
           Wie kann Shopify den stationären Handel integrieren?
         </h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem', marginTop: '0.5rem' }}>
+        <div className="assumptions-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem', marginTop: '0.5rem' }}>
           {/* Annahme 1 */}
           <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--shopify-green-dark)', fontWeight: '700', fontSize: '0.9rem' }}>
@@ -1004,7 +1004,7 @@ function App() {
           </div>
           
           {/* Alternating Showcase Rows with Timeline */}
-          <div style={{ position: 'relative', display: 'flex', gap: '2rem' }}>
+          <div className="showcase-layout-row" style={{ position: 'relative', display: 'flex', gap: '2rem' }}>
             
             {/* Timeline sidebar */}
             <div className="showcase-timeline-wrapper" style={{ position: 'relative', width: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
