@@ -301,6 +301,16 @@ function RestockForm({ spaetiStock, setSpaetiStock, gotecStock, setGotecStock, a
 }
 
 function App() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Navigation: Shopify Admin mock tabs ('overview', 'pos', 'inventory', 'analytics', 'smartstore', 'procurement', 'network')
   const [activeAdminTab, setActiveAdminTab] = useState('overview');
   const [showExplorer, setShowExplorer] = useState(false);
@@ -765,38 +775,119 @@ function App() {
   };
 
   return (
-    <div className="dashboard-container fade-in" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1rem' }}>
+    <div className="app-wrapper" style={{ background: '#f8fafc', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
       
-      {/* Persistent Header */}
-      <header className="dashboard-header" style={{ width: '100%', position: 'sticky', top: 0, zIndex: 1000, margin: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div className="logo-section">
-          <img src="/logo.png" alt="Shopify Logo" style={{ height: '36px', width: 'auto', marginRight: '0.25rem' }} />
-          <span className="logo-text" style={{ background: 'none', WebkitTextFillColor: 'initial', color: 'var(--text-primary)' }}>Shopify LocalShare</span>
-          <span className="logo-badge">Interaktiver Klickdummy</span>
-        </div>
+      {/* Hero Intro Section */}
+      <div className="hero-section" style={{
+        opacity: Math.max(0, 1 - scrollY / 600),
+        transform: `translateY(${scrollY * 0.2}px)`,
+        pointerEvents: scrollY > 500 ? 'none' : 'auto',
+        transition: 'opacity 0.1s linear, transform 0.1s linear'
+      }}>
+        <div className="hero-glow-green"></div>
+        <div className="hero-glow-blue"></div>
         
-        {/* Reset Button */}
-        <button 
-          onClick={() => window.location.reload()}
-          style={{
-            padding: '8px 16px',
-            borderRadius: '8px',
-            border: '1px solid var(--border-color)',
-            background: 'var(--card-bg)',
-            color: 'var(--text-primary)',
-            fontWeight: '600',
-            fontSize: '0.85rem',
-            cursor: 'pointer',
-            display: 'flex',
+        <div style={{ zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', padding: '2rem', textAlign: 'center', animation: 'hero-entrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}>
+          <img 
+            src="/logo.png" 
+            alt="Shopify LocalShare" 
+            style={{ 
+              width: '420px', 
+              maxWidth: '90%', 
+              height: 'auto', 
+              filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.06))',
+              background: '#fff',
+              padding: '1.5rem 2rem',
+              borderRadius: '24px',
+              border: '1px solid rgba(0,0,0,0.03)'
+            }} 
+          />
+          <div style={{ marginTop: '0.5rem' }}>
+            <span className="logo-badge" style={{ fontSize: '0.85rem', padding: '6px 14px', background: 'rgba(149, 191, 71, 0.1)', color: 'var(--shopify-green-dark)' }}>
+              Interaktiver Klickdummy
+            </span>
+          </div>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', lineHeight: '1.6', margin: '0.5rem 0 0 0', fontWeight: '500' }}>
+            Dezentrale Warenwirtschaft & Smart Contracts im lokalen Shopify-Händlernetzwerk.
+          </p>
+        </div>
+
+        <div className="scroll-indicator" style={{
+          opacity: Math.max(0, 1 - scrollY / 150),
+          transition: 'opacity 0.3s ease'
+        }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: '600', color: 'var(--text-secondary)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            Nach unten scrollen
+          </span>
+          <div className="mouse-icon">
+            <div className="wheel"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Dashboard Content */}
+      <div 
+        className="dashboard-container" 
+        style={{ 
+          maxWidth: '1400px', 
+          margin: '0 auto', 
+          width: '100%', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '1.5rem', 
+          padding: '1rem',
+          opacity: Math.min(1, scrollY / 400),
+          transform: `translateY(${Math.max(0, 50 - (scrollY / 400) * 50)}px)`,
+          transition: 'opacity 0.1s linear, transform 0.1s linear'
+        }}
+      >
+        
+        {/* Persistent Header */}
+        <header 
+          className="dashboard-header" 
+          style={{ 
+            width: '100%', 
+            position: 'sticky', 
+            top: 0, 
+            zIndex: 1000, 
+            margin: 0, 
+            display: 'flex', 
+            justifyContent: 'space-between', 
             alignItems: 'center',
-            gap: '0.5rem',
-            transition: 'all 0.2s'
+            opacity: scrollY > 250 ? 1 : 0,
+            pointerEvents: scrollY > 250 ? 'auto' : 'none',
+            transition: 'opacity 0.4s ease, transform 0.4s ease',
+            transform: scrollY > 250 ? 'translateY(0)' : 'translateY(-10px)'
           }}
         >
-          <RefreshCw size={14} style={{ color: 'var(--shopify-green-dark)' }} />
-          <span>Simulation zurücksetzen</span>
-        </button>
-      </header>
+          <div className="logo-section">
+            <img src="/logo.png" alt="Shopify Logo" style={{ height: '36px', width: 'auto', marginRight: '0.25rem' }} />
+            <span className="logo-text" style={{ background: 'none', WebkitTextFillColor: 'initial', color: 'var(--text-primary)' }}>Shopify LocalShare</span>
+            <span className="logo-badge">Interaktiver Klickdummy</span>
+          </div>
+          
+          {/* Reset Button */}
+          <button 
+            onClick={() => window.location.reload()}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              border: '1px solid var(--border-color)',
+              background: 'var(--card-bg)',
+              color: 'var(--text-primary)',
+              fontWeight: '600',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              transition: 'all 0.2s'
+            }}
+          >
+            <RefreshCw size={14} style={{ color: 'var(--shopify-green-dark)' }} />
+            <span>Simulation zurücksetzen</span>
+          </button>
+        </header>
 
       {/* Assumptions Box based on Slide 1 */}
       <div className="panel" style={{ padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '16px', textAlign: 'left' }}>
@@ -1990,6 +2081,7 @@ function App() {
       </div>
 
     </div>
+  </div>
   );
 }
 

@@ -1438,3 +1438,97 @@ input[type="range"] {
 .custom-map-popup a.leaflet-popup-close-button:hover {
   background: rgba(0,0,0,0.7) !important;
 }
+
+/* Hero Section Landing CSS */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #ffffff 0%, #f8fafc 100%);
+  overflow: hidden;
+}
+
+.hero-glow-green {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(149, 191, 71, 0.1) 0%, transparent 70%);
+  top: 15%;
+  left: 10%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-glow-blue {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(15, 34, 64, 0.05) 0%, transparent 70%);
+  bottom: 15%;
+  right: 10%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes hero-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mouse Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mouse-icon {
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--text-secondary);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  opacity: 0.8;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--shopify-green-dark);
+  border-radius: 2px;
+  animation: scroll-wheel 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-wheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
