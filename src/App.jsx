@@ -837,7 +837,7 @@ function App() {
           gap: '1.5rem', 
           padding: '1rem',
           opacity: Math.min(1, scrollY / 400),
-          transform: `translateY(${Math.max(0, 50 - (scrollY / 400) * 50)}px)`,
+          transform: scrollY > 400 ? 'none' : `translateY(${Math.max(0, 50 - (scrollY / 400) * 50)}px)`,
           transition: 'opacity 0.1s linear, transform 0.1s linear'
         }}
       >
@@ -846,14 +846,6 @@ function App() {
         <header 
           className="dashboard-header" 
           style={{ 
-            width: '100%', 
-            position: 'sticky', 
-            top: 0, 
-            zIndex: 1000, 
-            margin: 0, 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center',
             opacity: scrollY > 250 ? 1 : 0,
             pointerEvents: scrollY > 250 ? 'auto' : 'none',
             transition: 'opacity 0.4s ease, transform 0.4s ease',
