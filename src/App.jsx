@@ -514,7 +514,16 @@ function App() {
           iconSize: [60, 60],
           iconAnchor: [30, 45]
         })
-      }).addTo(mapRef.current);
+      }).addTo(mapRef.current)
+        .bindPopup(`
+          <div style="text-align: center; margin: 0; padding: 0; font-family: var(--font-sans);">
+            <img src="/kiosk67.jpg" alt="Kiosk 67" style="width: 240px; height: auto; border-radius: 12px 12px 0 0; display: block;" />
+            <div style="padding: 10px 12px; font-weight: 700; font-size: 0.9rem; color: #1a1a1a; text-align: left; background: #fff; border-radius: 0 0 12px 12px;">🏪 Kiosk 67 (Ali Yilmaz)</div>
+          </div>
+        `, {
+          className: 'custom-map-popup',
+          offset: [0, -35]
+        });
     }
 
     // Café Ostwind HTML marker
