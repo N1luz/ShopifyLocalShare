@@ -302,14 +302,54 @@ function RestockForm({ spaetiStock, setSpaetiStock, gotecStock, setGotecStock, a
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
+  const showcaseContainerRef = useRef(null);
+  const [timelineProgress, setTimelineProgress] = useState(0);
+  const [nodesActive, setNodesActive] = useState({ n1: false, n2: false, n3: false });
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
+      
+      if (showcaseContainerRef.current) {
+        const rect = showcaseContainerRef.current.getBoundingClientRect();
+        const containerHeight = rect.height;
+        const viewportHeight = window.innerHeight;
+        
+        // Start filling line when top of container reaches 75% of viewport height
+        const startOffset = viewportHeight * 0.75;
+        const currentPos = startOffset - rect.top;
+        
+        // Map scroll distance to 0-100% of the timeline line (cap height to Node 3 center)
+        const progress = Math.max(0, Math.min(100, (currentPos / (containerHeight - 160)) * 100));
+        setTimelineProgress(progress);
+        
+        setNodesActive({
+          n1: rect.top < viewportHeight * 0.8,
+          n2: rect.top < viewportHeight * 0.45,
+          n3: rect.top < viewportHeight * 0.15
+        });
+      }
     };
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    
+    // Intersection Observer for slide-in reveals
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    const elements = document.querySelectorAll('.reveal-element');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, [activeAdminTab]);
 
   // Navigation: Shopify Admin mock tabs ('overview', 'pos', 'inventory', 'analytics', 'smartstore', 'procurement', 'network')
   const [activeAdminTab, setActiveAdminTab] = useState('overview');
@@ -941,20 +981,34 @@ function App() {
             </p>
           </div>
           
-          {/* Alternating Showcase Rows */}
-          <div className="showcase-container">
+          {/* Alternating Showcase Rows with Timeline */}
+          <div style={{ position: 'relative', display: 'flex', gap: '2rem' }}>
             
-            {/* Row 1: Dezentrale Präsenz */}
-            <div className="showcase-row">
-              <div className="showcase-image-wrapper">
-                <img src="/folie2-bild1.jpg" alt="Dezentrale Präsenz" />
+            {/* Timeline sidebar */}
+            <div className="showcase-timeline-wrapper" style={{ position: 'relative', width: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+              <div className="timeline-line-bg"></div>
+              <div className="timeline-line-fill" style={{ height: `${timelineProgress}%` }}></div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', width: '100%', position: 'absolute', top: 0, bottom: 0, padding: '36px 0' }}>
+                <div className={`timeline-node ${nodesActive.n1 ? 'active' : ''}`}>1</div>
+                <div className={`timeline-node ${nodesActive.n2 ? 'active' : ''}`}>2</div>
+                <div className={`timeline-node ${nodesActive.n3 ? 'active' : ''}`}>3</div>
               </div>
-              <div className="showcase-content">
-                <div className="showcase-tag" style={{ background: 'rgba(149, 191, 71, 0.1)', color: 'var(--shopify-green-dark)' }}>
-                  <Store size={14} />
-                  <span>Präsenz</span>
+            </div>
+
+            <div className="showcase-container" ref={showcaseContainerRef} style={{ flex: 1 }}>
+              
+              {/* Row 1: Dezentrale Präsenz */}
+              <div className="showcase-row">
+                <div className="showcase-image-wrapper reveal-element reveal-left">
+                  <img src="/folie2-bild1.jpg" alt="Dezentrale Präsenz" />
                 </div>
-                <h3 className="showcase-title">1. Dezentrale Präsenz</h3>
+                <div className="showcase-content reveal-element reveal-right">
+                  <div className="showcase-tag" style={{ background: 'rgba(149, 191, 71, 0.1)', color: 'var(--shopify-green-dark)' }}>
+                    <Store size={14} />
+                    <span>Präsenz</span>
+                  </div>
+                  <h3 className="showcase-title">1. Dezentrale Präsenz</h3>
                   <p className="showcase-description">
                     Produktausstellung und Verkauf direkt vor Ort im lokalen Partnershop. Kunden können D2C-Produkte physisch erleben und direkt über das Shopify POS-Terminal erwerben. Dies ermöglicht Marken einen kosteneffizienten physischen Auftritt ohne eigenes Ladenlokal.
                   </p>
@@ -963,10 +1017,10 @@ function App() {
 
               {/* Row 2: Flexibler Kurier-Transfer */}
               <div className="showcase-row">
-                <div className="showcase-image-wrapper">
+                <div className="showcase-image-wrapper reveal-element reveal-right">
                   <img src="/folie2-bild2.jpg" alt="Flexibler Kurier-Transfer" />
                 </div>
-                <div className="showcase-content">
+                <div className="showcase-content reveal-element reveal-left">
                   <div className="showcase-tag" style={{ background: 'rgba(8, 145, 178, 0.1)', color: 'var(--neon-cyan)' }}>
                     <Activity size={14} />
                     <span>Logistik</span>
@@ -980,10 +1034,10 @@ function App() {
 
               {/* Row 3: Blockchain Smart Split */}
               <div className="showcase-row">
-                <div className="showcase-image-wrapper">
+                <div className="showcase-image-wrapper reveal-element reveal-left">
                   <img src="/folie2-bild3.png" alt="Blockchain Smart Split" />
                 </div>
-                <div className="showcase-content">
+                <div className="showcase-content reveal-element reveal-right">
                   <div className="showcase-tag" style={{ background: 'rgba(124, 58, 237, 0.1)', color: 'var(--neon-purple)' }}>
                     <Coins size={14} />
                     <span>Finanzen</span>
@@ -997,9 +1051,10 @@ function App() {
 
             </div>
           </div>
+        </div>
 
           {/* macOS Browser Mockup window */}
-          <div className="mac-mockup-window">
+          <div className="mac-mockup-window reveal-element reveal-up-tilt">
             {/* macOS Titlebar */}
             <div className="mac-titlebar">
               <div className="mac-dots">
