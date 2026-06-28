@@ -333,21 +333,31 @@ function App() {
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Intersection Observer for slide-in reveals
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-active');
-        }
-      });
-    }, { threshold: 0.15 });
+    // Intersection Observer for slide-in reveals (guarded for safety)
+    let observer;
+    let elements = [];
+    if (typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+          }
+        });
+      }, { threshold: 0.15 });
 
-    const elements = document.querySelectorAll('.reveal-element');
-    elements.forEach((el) => observer.observe(el));
+      elements = document.querySelectorAll('.reveal-element');
+      elements.forEach((el) => observer.observe(el));
+    } else {
+      // Fallback for environments without IntersectionObserver support (instantly activate reveal elements)
+      const fallbackElements = document.querySelectorAll('.reveal-element');
+      fallbackElements.forEach((el) => el.classList.add('reveal-active'));
+    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      elements.forEach((el) => observer.unobserve(el));
+      if (observer) {
+        elements.forEach((el) => observer.unobserve(el));
+      }
     };
   }, [activeAdminTab]);
 
