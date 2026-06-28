@@ -301,10 +301,20 @@ function RestockForm({ spaetiStock, setSpaetiStock, gotecStock, setGotecStock, a
 }
 
 function App() {
+  // Navigation: Shopify Admin mock tabs ('overview', 'pos', 'inventory', 'analytics', 'smartstore', 'procurement', 'network')
+  const [activeAdminTab, setActiveAdminTab] = useState('overview');
+  const [showExplorer, setShowExplorer] = useState(false);
+  const [selectedBlockId, setSelectedBlockId] = useState(null);
+
   const [scrollY, setScrollY] = useState(0);
   const showcaseContainerRef = useRef(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [nodesActive, setNodesActive] = useState({ n1: false, n2: false, n3: false });
+
+  // Force scroll to top on mount so the landing page experience is consistent
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -360,11 +370,6 @@ function App() {
       }
     };
   }, [activeAdminTab]);
-
-  // Navigation: Shopify Admin mock tabs ('overview', 'pos', 'inventory', 'analytics', 'smartstore', 'procurement', 'network')
-  const [activeAdminTab, setActiveAdminTab] = useState('overview');
-  const [showExplorer, setShowExplorer] = useState(false);
-  const [selectedBlockId, setSelectedBlockId] = useState(null);
 
   // Inventory stocks (bier internally represents Kaffee)
   const [spaetiStock, setSpaetiStock] = useState({ bier: 240, cola: 180, mate: 95, snacks: 60 });
