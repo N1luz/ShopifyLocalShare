@@ -312,9 +312,6 @@ function App() {
   const macbookContainerRef = useRef(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [nodesActive, setNodesActive] = useState({ n1: false, n2: false, n3: false });
-  const [lidRotation, setLidRotation] = useState(-95);
-  const hasOpenedRef = useRef(false);
-  const isReadyRef = useRef(false);
 
   // Force scroll to top on mount so the landing page experience is consistent
   useEffect(() => {
@@ -322,10 +319,6 @@ function App() {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => {
-      isReadyRef.current = true;
-    }, 250); // Give 250ms for scroll restoration and scroll to top to settle
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -351,26 +344,6 @@ function App() {
           n2: rect.top < viewportHeight * 0.45,
           n3: rect.top < viewportHeight * 0.15
         });
-      }
-
-      if (macbookContainerRef.current && isReadyRef.current) {
-        if (hasOpenedRef.current) {
-          setLidRotation(0);
-        } else {
-          const startScroll = 900;
-          const endScroll = 1450;
-          
-          if (currentScrollY > endScroll) {
-            setLidRotation(0);
-            hasOpenedRef.current = true;
-          } else if (currentScrollY < startScroll) {
-            setLidRotation(-95);
-          } else {
-            const progress = (currentScrollY - startScroll) / (endScroll - startScroll);
-            const rotation = -95 + progress * 95;
-            setLidRotation(rotation);
-          }
-        }
       }
     };
     
@@ -1106,8 +1079,8 @@ function App() {
             
             {/* The Lid (Screen) */}
             <div className="macbook-lid" style={{
-              transform: `rotateX(${lidRotation}deg)`,
-              pointerEvents: lidRotation >= -2 ? 'auto' : 'none'
+              transform: 'none',
+              pointerEvents: 'auto'
             }}>
               <div className="mac-mockup-window" style={{ margin: 0, boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
             {/* macOS Titlebar */}
