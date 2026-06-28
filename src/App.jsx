@@ -316,6 +316,9 @@ function App() {
 
   // Force scroll to top on mount so the landing page experience is consistent
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.history && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
   }, []);
 

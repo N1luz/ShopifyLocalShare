@@ -1626,17 +1626,18 @@ input[type="range"] {
 }
 
 .macbook-base {
-  width: 99%;
+  width: 100%;
+  max-width: 1200px;
   height: 120px;
   background: linear-gradient(to bottom, #e2e2e7 0%, #b2b2b7 10%, #8e8e93 100%);
   border-radius: 0 0 20px 20px;
   transform-origin: top center;
-  transform: rotateX(68deg);
-  margin-top: -24px; /* Pull base under the screen hinge */
+  transform: rotateX(68deg) scaleX(0.96); /* Scale X to align flush with the lid bezel under perspective */
+  margin-top: -20px; /* Pull base under the screen hinge */
   border-bottom: 4px solid #4a4a4f;
   box-shadow: 
-    0 15px 30px rgba(0,0,0,0.1),
-    0 5px 10px rgba(0,0,0,0.15),
+    0 15px 30px rgba(0,0,0,0.15),
+    0 5px 10px rgba(0,0,0,0.2),
     inset 0 1px 1px rgba(255,255,255,0.7);
   position: relative;
   z-index: 1;
