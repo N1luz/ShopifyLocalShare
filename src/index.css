@@ -1963,6 +1963,40 @@ input[type="range"] {
 
   /* --- Tab Content Stack Overrides --- */
 
+  /* Ensure all tables scroll horizontally instead of clipping */
+  .shopify-main-content table {
+    min-width: 550px !important;
+  }
+
+  /* Universal grid-to-column layout stacking inside phone viewport */
+  .shopify-main-content div[style*="display: grid"],
+  .shopify-main-content div[style*="display:grid"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  .shopify-main-content div[style*="display: grid"] > div,
+  .shopify-main-content div[style*="display:grid"] > div {
+    border-right: none !important;
+    border-left: none !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    border-bottom: 1px solid #e1e3e5 !important;
+    padding-bottom: 1.25rem !important;
+  }
+  .shopify-main-content div[style*="display: grid"] > div:last-child,
+  .shopify-main-content div[style*="display:grid"] > div:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Analytics stats container grid override */
+  .analytics-panel > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
   /* Map Container */
   .map-wrapper {
     min-height: 280px !important;

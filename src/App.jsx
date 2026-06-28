@@ -2198,7 +2198,7 @@ function App() {
                     onClick={() => { setActiveAdminTab('pos'); setMobileMenuOpen(false); }}
                     style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
                   >
-                    <Store size={16} />
+                    <ShoppingCart size={16} />
                     <span>POS Kassensystem</span>
                   </button>
                   <button 
@@ -2206,7 +2206,7 @@ function App() {
                     onClick={() => { setActiveAdminTab('inventory'); setMobileMenuOpen(false); }}
                     style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
                   >
-                    <Package size={16} />
+                    <Activity size={16} />
                     <span>Warenwirtschaft</span>
                   </button>
                   <button 
@@ -2222,7 +2222,7 @@ function App() {
                     onClick={() => { setActiveAdminTab('smartstore'); setMobileMenuOpen(false); }}
                     style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
                   >
-                    <Cpu size={16} />
+                    <QrCode size={16} />
                     <span>Smart Store (ESL)</span>
                   </button>
                   <button 
@@ -2230,7 +2230,7 @@ function App() {
                     onClick={() => { setActiveAdminTab('procurement'); setMobileMenuOpen(false); }}
                     style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
                   >
-                    <Truck size={16} />
+                    <Layers size={16} />
                     <span>Smart Procurement</span>
                   </button>
                   <button 
@@ -2238,7 +2238,7 @@ function App() {
                     onClick={() => { setActiveAdminTab('network'); setMobileMenuOpen(false); }}
                     style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
                   >
-                    <Network size={16} />
+                    <Store size={16} />
                     <span>Händlernetzwerk</span>
                   </button>
                 </nav>
