@@ -312,6 +312,7 @@ function App() {
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [nodesActive, setNodesActive] = useState({ n1: false, n2: false, n3: false });
   const [lidRotation, setLidRotation] = useState(-95);
+  const [hasOpened, setHasOpened] = useState(false);
 
   // Force scroll to top on mount so the landing page experience is consistent
   useEffect(() => {
@@ -320,7 +321,8 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
       
       if (showcaseContainerRef.current) {
         const rect = showcaseContainerRef.current.getBoundingClientRect();
@@ -346,17 +348,29 @@ function App() {
         const rect = macbookContainerRef.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        // Start opening when top of MacBook container is at 95% of viewport
-        const startOffset = viewportHeight * 0.95;
-        const endOffset = viewportHeight * 0.15;
-        
-        const totalDistance = startOffset - endOffset;
-        const currentDistance = startOffset - rect.top;
-        
-        const progress = Math.max(0, Math.min(1, currentDistance / totalDistance));
-        // Rotate from -95deg to 0deg (cap at 0 for ease of interaction)
-        const rotation = -95 + progress * 95;
-        setLidRotation(rotation);
+        // Reset hasOpened if scrolled back up to the hero/intro area
+        if (currentScrollY < 300) {
+          setHasOpened(false);
+          setLidRotation(-95);
+        } else if (hasOpened) {
+          setLidRotation(0);
+        } else {
+          // Start opening when top of MacBook container is at 95% of viewport
+          const startOffset = viewportHeight * 0.95;
+          const endOffset = viewportHeight * 0.15;
+          
+          const totalDistance = startOffset - endOffset;
+          const currentDistance = startOffset - rect.top;
+          
+          const progress = Math.max(0, Math.min(1, currentDistance / totalDistance));
+          // Rotate from -95deg to 0deg (cap at 0 for ease of interaction)
+          const rotation = -95 + progress * 95;
+          setLidRotation(rotation);
+          
+          if (rotation >= -0.5) {
+            setHasOpened(true);
+          }
+        }
       }
     };
     
