@@ -1632,8 +1632,8 @@ input[type="range"] {
   background: linear-gradient(to bottom, #e2e2e7 0%, #b2b2b7 10%, #8e8e93 100%);
   border-radius: 0 0 20px 20px;
   transform-origin: top center;
-  transform: rotateX(68deg) scaleX(0.96); /* Scale X to align flush with the lid bezel under perspective */
-  margin-top: -20px; /* Pull base under the screen hinge */
+  transform: rotateX(68deg) scaleX(1.055); /* Scale X up to compensate for perspective shrink at the hinge */
+  margin-top: -22px; /* Pull base under the screen hinge */
   border-bottom: 4px solid #4a4a4f;
   box-shadow: 
     0 15px 30px rgba(0,0,0,0.15),

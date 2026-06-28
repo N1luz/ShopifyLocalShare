@@ -304,6 +304,7 @@ function App() {
   // Navigation: Shopify Admin mock tabs ('overview', 'pos', 'inventory', 'analytics', 'smartstore', 'procurement', 'network')
   const [activeAdminTab, setActiveAdminTab] = useState('overview');
   const [showExplorer, setShowExplorer] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [selectedBlockId, setSelectedBlockId] = useState(null);
 
   const [scrollY, setScrollY] = useState(0);
@@ -312,7 +313,8 @@ function App() {
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [nodesActive, setNodesActive] = useState({ n1: false, n2: false, n3: false });
   const [lidRotation, setLidRotation] = useState(-95);
-  const [hasOpened, setHasOpened] = useState(false);
+  const hasOpenedRef = useRef(false);
+  const isReadyRef = useRef(false);
 
   // Force scroll to top on mount so the landing page experience is consistent
   useEffect(() => {
@@ -320,6 +322,10 @@ function App() {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    const timer = setTimeout(() => {
+      isReadyRef.current = true;
+    }, 250); // Give 250ms for scroll restoration and scroll to top to settle
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -347,8 +353,8 @@ function App() {
         });
       }
 
-      if (macbookContainerRef.current) {
-        if (hasOpened) {
+      if (macbookContainerRef.current && isReadyRef.current) {
+        if (hasOpenedRef.current) {
           setLidRotation(0);
         } else {
           const startScroll = 900;
@@ -356,7 +362,7 @@ function App() {
           
           if (currentScrollY > endScroll) {
             setLidRotation(0);
-            setHasOpened(true);
+            hasOpenedRef.current = true;
           } else if (currentScrollY < startScroll) {
             setLidRotation(-95);
           } else {
@@ -1445,14 +1451,14 @@ function App() {
 
                       {/* Middle Side: Scanner Feed (Video) */}
                       <div style={{ borderLeft: '1px solid #e1e3e5', paddingLeft: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <div className="pos-video-container">
+                        <div className="pos-video-container" onClick={() => setShowVideoModal(true)} style={{ cursor: 'pointer' }}>
                           <video 
                             src="/Folie1.mp4" 
                             autoPlay 
                             loop 
                             muted 
                             playsInline
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
                           />
                         </div>
                       </div>
@@ -2167,6 +2173,27 @@ function App() {
                   setSelectedBlockId={setSelectedBlockId}
                   getBlockPayload={getBlockPayload}
                   onClose={() => setShowExplorer(false)}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Video Lightbox Modal Overlay */}
+          {showVideoModal && (
+            <div className="blockchain-explorer-overlay" onClick={() => setShowVideoModal(false)} style={{ zIndex: 9999 }}>
+              <div className="video-lightbox-content" onClick={(e) => e.stopPropagation()} style={{ position: 'relative', width: '90%', maxWidth: '1000px', background: '#000', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', margin: 'auto' }}>
+                <button 
+                  onClick={() => setShowVideoModal(false)} 
+                  style={{ position: 'absolute', top: '15px', right: '15px', background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', fontSize: '24px', fontWeight: 'bold', width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  ×
+                </button>
+                <video 
+                  src="/Folie1.mp4" 
+                  controls 
+                  autoPlay 
+                  loop 
+                  style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '80vh' }}
                 />
               </div>
             </div>
